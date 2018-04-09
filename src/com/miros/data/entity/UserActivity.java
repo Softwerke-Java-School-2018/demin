@@ -41,4 +41,12 @@ public class UserActivity {
     public LocalDate getLocalDate() {
         return localDate;
     }
+
+    @Override
+    public String toString() {
+        return  id +
+                user.toString() +"\n"+
+                device.toString()+"\n"+
+                localDate.toString();
+    }
 }

@@ -56,4 +56,9 @@ public class User {
     public LocalDate getBirthDay() {
         return birthDay;
     }
+
+    @Override
+    public String toString() {
+        return id+" "+name+" "+surname+" "+patronymic+" "+birthDay.toString();
+    }
 }

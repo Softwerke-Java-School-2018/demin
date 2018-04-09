@@ -1,7 +1,5 @@
 package com.miros.view;
 
-import com.miros.Main;
-import com.miros.controller.BaseController;
 import com.miros.controller.UserController;
 
 import java.time.LocalDate;
@@ -13,10 +11,10 @@ public class UserView {
    // private UserController userController = new UserController();
 
     public void userMenu() {
-        System.out.println("Введите номер команды:" +
-                "1 - создание пользователя" +
-                "2 - удаление пользователя" +
-                "3 - обновление пользователя");
+        System.out.println("Enter the command number:\n" +
+                "1 - user create\n" +
+                "2 - user remove\n" +
+                "3 - user update\n");
         String command = readLine();
         switch (command) {
             case "1":
@@ -67,7 +65,6 @@ public class UserView {
         new UserController().delete(id);
     }
 
-
     /**
      * Обновление пользователя и вызов контроллера
      */
@@ -85,10 +82,7 @@ public class UserView {
         System.out.println("Enter BirthDay like 04/10/1983 for the change or leave it empty to leave as is");
         String birthDay = readLine();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(birthDay, formatter);
-
-        new UserController().update(id, name, surname, patronymic, localDate);
+        new UserController().update(id, name, surname, patronymic, birthDay);
 
     }
 }

@@ -7,15 +7,20 @@ public class Device {
 
     private static long deviceId=0;
     private long id;
+
     DeviceType deviceType;
+
     DeviceColor deviceColor;
 
-    public Device(){};
+    String model;
 
-    public Device(DeviceType deviceType, DeviceColor deviceColor){
+    public Device(){}
+
+    public Device(DeviceType deviceType, DeviceColor deviceColor, String model){
         this.id = deviceId++;
         this.deviceType = deviceType;
         this.deviceColor = deviceColor;
+        this.model = model.toUpperCase();
     }
 
     public void setDeviceColor(DeviceColor deviceColor) {
@@ -32,5 +37,22 @@ public class Device {
 
     public DeviceType getDeviceType() {
         return deviceType;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    @Override
+    public String toString() {
+        return id + " "+deviceType.toString()+" "+deviceColor.toString()+" "+model;
     }
 }
