@@ -7,13 +7,9 @@ public class Device {
 
     private static long deviceId=0;
     private long id;
-
-    DeviceType deviceType;
-
-    DeviceColor deviceColor;
-
-    String model;
-
+    private DeviceType deviceType;
+    private DeviceColor deviceColor;
+    private String model;
     public Device(){}
 
     public Device(DeviceType deviceType, DeviceColor deviceColor, String model){
