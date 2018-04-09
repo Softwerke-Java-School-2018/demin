@@ -8,11 +8,11 @@ public class Device {
     private static long deviceId=0;
     private long id;
 
-    DeviceType deviceType;
+    private DeviceType deviceType;
 
-    DeviceColor deviceColor;
+    private DeviceColor deviceColor;
 
-    String model;
+    private String model;
 
     public Device(){}
 
