@@ -10,7 +10,6 @@ import java.util.Scanner;
  */
 public class BaseView {
 
-
     private UserView userView;
     private DeviceView deviceView;
     private UserActivityView userActivityView;

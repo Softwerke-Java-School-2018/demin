@@ -7,6 +7,15 @@ import com.miros.data.entity.Device;
  * Контроллер для поиска устройств
  */
 public class DeviceFindController extends BaseController {
+
+    private static DeviceFindController deviceFindController = new DeviceFindController();
+
+    public DeviceFindController(){}
+
+    public static DeviceFindController getInstance(){
+        return deviceFindController;
+    }
+
    public void deviceIdFind(Integer id){
         System.out.println(Main.deviceList.get(id));
         waitForEnter();

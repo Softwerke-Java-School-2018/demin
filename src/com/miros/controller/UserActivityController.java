@@ -13,6 +13,13 @@ import java.time.LocalDate;
 
 public class UserActivityController extends BaseController {
 
+    private static UserActivityController userActivityController = new UserActivityController();
+
+    public  UserActivityController(){}
+
+    public static UserActivityController getInstance(){
+        return userActivityController;
+    }
 
     public void create(Integer userId, Integer deviceId, LocalDate localDate){
 

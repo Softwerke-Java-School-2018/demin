@@ -12,6 +12,13 @@ import java.time.format.DateTimeFormatter;
 public class UserActivityFindController extends BaseController {
 
 
+    private static UserActivityFindController userActivityFindController = new UserActivityFindController();
+
+    public  UserActivityFindController(){}
+
+    public static UserActivityFindController getInstance(){
+        return userActivityFindController;
+    }
     /**
      * Поиск по имени покупателя
      * @param userName

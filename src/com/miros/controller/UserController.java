@@ -14,8 +14,15 @@ import java.time.format.DateTimeFormatter;
 
 public class UserController extends BaseController  {
 
-    public UserController(){
+    private static UserController userController = new UserController();
+
+    public UserController(){}
+
+    public static UserController getInstance(){
+        return userController;
     }
+
+
     /**
      * Создание нового пользователя и переход в главное меню.
      * @param name

@@ -34,13 +34,13 @@ public class UserActivityView  {
         Integer deviceId = Integer.parseInt(readLine());
         LocalDate localDate = LocalDate.now();
 
-        new UserActivityController().create(userId, deviceId, localDate);
+        UserActivityController.getInstance().create(userId, deviceId, localDate);
     }
 
     void deleteUserActivityView(){
         System.out.println("Enter purchase id");
         Integer uavId = Integer.parseInt(readLine());
-        new UserActivityController().delete(uavId);
+        UserActivityController.getInstance().delete(uavId);
     }
 }
 

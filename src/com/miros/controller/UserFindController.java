@@ -12,6 +12,14 @@ import java.time.format.DateTimeFormatter;
 
 public class UserFindController extends BaseController {
 
+    private static UserFindController userFindController = new UserFindController();
+
+    public  UserFindController(){}
+
+    public static UserFindController getInstance(){
+        return userFindController;
+    }
+
     public void userIdFind(Integer id){
         System.out.println(Main.userList.get(id));
         waitForEnter();

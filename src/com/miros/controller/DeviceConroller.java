@@ -11,6 +11,12 @@ import com.miros.data.enums.DeviceType;
 
 public class DeviceConroller extends BaseController {
 
+    private static DeviceConroller deviceConroller = new DeviceConroller();
+
+    public static DeviceConroller getInstance(){
+        return deviceConroller;
+    }
+
     public DeviceConroller() {
     }
 

@@ -1,6 +1,7 @@
 package com.miros.view;
 
 import com.miros.controller.UserController;
+import com.miros.data.entity.UserActivity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -52,7 +53,7 @@ public class UserView {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse(birthDay, formatter);
-        new UserController().create(name, surname, patronymic, localDate);
+        UserController.getInstance().create(name, surname, patronymic, localDate);
     }
 
     /**
@@ -62,7 +63,7 @@ public class UserView {
     private void deleteReader(){
         System.out.println("Enter Id");
         Integer id = Integer.parseInt(readLine());
-        new UserController().delete(id);
+        UserController.getInstance().delete(id);
     }
 
     /**
@@ -82,7 +83,7 @@ public class UserView {
         System.out.println("Enter BirthDay like 04/10/1983 for the change or leave it empty to leave as is");
         String birthDay = readLine();
 
-        new UserController().update(id, name, surname, patronymic, birthDay);
+        UserController.getInstance().update(id, name, surname, patronymic, birthDay);
 
     }
 }
