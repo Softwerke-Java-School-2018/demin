@@ -5,26 +5,20 @@ import java.util.Scanner;
 
 public class BaseController {
 
-    protected BaseView baseView = new BaseView();
+    private static BaseView baseView = new BaseView();
 
     public BaseController() {
     }
 
-    private String readLine(){
-        System.out.println("Press Enter to back in main menu");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+    protected BaseView getBaseView() {
+        return baseView;
     }
 
-    protected void waitForEnter(){
-        while (readLine().equals("")){
+    public static void waitForEnter() {
+        while (Utils.readLine().equals("")) {
             baseView.baseMenu();
         }
     }
-
-    protected void clearScr(){
-    }
-
 }
 
 

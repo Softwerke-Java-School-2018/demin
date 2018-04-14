@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class UserView {
 
-   // private UserController userController = new UserController();
+    // private UserController userController = new UserController();
 
     public void userMenu() {
         System.out.println("Enter the command number:\n" +
@@ -35,6 +35,7 @@ public class UserView {
         String str = scanner.nextLine();
         return str;
     }
+
     /**
      * Создание пользователя и вызов контроллера
      */
@@ -55,7 +56,6 @@ public class UserView {
         LocalDate localDate = LocalDate.parse(birthDay, formatter);
         UserController.getInstance().create(name, surname, patronymic, localDate);
     }
-
     /**
      * Удаление пользователя и вызов контроллера
      */
@@ -65,7 +65,6 @@ public class UserView {
         Integer id = Integer.parseInt(readLine());
         UserController.getInstance().delete(id);
     }
-
     /**
      * Обновление пользователя и вызов контроллера
      */
@@ -84,7 +83,6 @@ public class UserView {
         String birthDay = readLine();
 
         UserController.getInstance().update(id, name, surname, patronymic, birthDay);
-
     }
 }
 

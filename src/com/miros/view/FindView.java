@@ -47,7 +47,7 @@ public class FindView {
             case "1":
                 System.out.println("Enter id");
                 Integer id = Integer.parseInt(readLine());
-                DeviceFindController.getInstance().deviceIdFind(id);
+                DeviceFindController.getInstance().idFind(id);
             case "2":
                 System.out.println("Enter type");
                 String type = readLine();
@@ -57,7 +57,7 @@ public class FindView {
                 String color = readLine();
                 DeviceFindController.getInstance().deviceColorFind(color);
             case "4":
-                DeviceFindController.getInstance().showAllDevices();
+                DeviceFindController.getInstance().showAll();
         }
     }
 
@@ -76,17 +76,17 @@ public class FindView {
             case "1":
                 System.out.println("Enter id");
                 Integer id = Integer.parseInt(readLine());
-                UserFindController.getInstance().userIdFind(id);
+                UserFindController.getInstance().idFind(id);
             case "2":
                 System.out.println("Enter Name");
                 String name = readLine();
-                UserFindController.getInstance().userNameFind(name);
+                UserFindController.getInstance().nameFind(name);
             case "3":
                 System.out.println("Enter BirthDay like 12/06/1994");
                 String birthDay = readLine();
-                UserFindController.getInstance().localDateFind(birthDay);
+                UserFindController.getInstance().dateFind(birthDay);
             case "4":
-                UserFindController.getInstance().showAllUsers();
+                UserFindController.getInstance().showAll();
         }
     }
 

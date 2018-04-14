@@ -1,6 +1,7 @@
 package com.miros.controller;
 
 import com.miros.Main;
+import com.miros.data.DateBase;
 import com.miros.data.entity.Device;
 
 /**
@@ -9,15 +10,13 @@ import com.miros.data.entity.Device;
 public class DeviceFindController extends BaseController {
 
     private static DeviceFindController deviceFindController = new DeviceFindController();
-
     public DeviceFindController(){}
 
     public static DeviceFindController getInstance(){
         return deviceFindController;
     }
-
-   public void deviceIdFind(Integer id){
-        System.out.println(Main.deviceList.get(id));
+   public void idFind(Integer id){
+        System.out.println(DateBase.deviceList.get(id));
         waitForEnter();
     }
 
@@ -26,7 +25,7 @@ public class DeviceFindController extends BaseController {
      * @param color
      */
     public void deviceColorFind(String color){
-            for (Device device : Main.deviceList){
+            for (Device device : DateBase.deviceList){
                 if(device.getDeviceColor().name().equalsIgnoreCase(color)){
                     System.out.println(device.toString());
                 }
@@ -34,24 +33,31 @@ public class DeviceFindController extends BaseController {
         waitForEnter();
     }
 
+    public void nameFind(String name) {
+        for (Device device : DateBase.deviceList){
+            if(device.getModel().equals(name)){
+                System.out.println(device.toString());
+            }
+        }
+    }
+
     /**
      * Поиск по типу устройства
      * @param type
      */
     public void deviceTypeFind(String type){
-        for (Device device : Main.deviceList){
+        for (Device device : DateBase.deviceList){
             if(device.getDeviceType().name().equalsIgnoreCase(type)){
                 System.out.println(device.toString());
             }
         }
         waitForEnter();
     }
-
     /**
      * Вывод всех устройств
      */
-    public void showAllDevices(){
-        for(Device device : Main.deviceList){
+    public void showAll(){
+        for(Device device : DateBase.deviceList){
             System.out.println(device);
         }
         waitForEnter();

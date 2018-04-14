@@ -1,7 +1,6 @@
 package com.miros.view;
 
-import com.miros.controller.DeviceConroller;
-import com.miros.data.entity.Device;
+import com.miros.controller.DeviceController;
 import com.miros.data.enums.DeviceColor;
 import com.miros.data.enums.DeviceType;
 
@@ -54,7 +53,7 @@ public class DeviceView {
         System.out.println("Enter model");
         String model = readLine().toUpperCase();
 //Single tone or fabric
-        DeviceConroller.getInstance().create(deviceType, deviceColor, model);
+        DeviceController.getInstance().create(deviceType, deviceColor, model);
     }
 
     /**
@@ -63,7 +62,7 @@ public class DeviceView {
     private void deleteDevice() {
         System.out.println("Enter Id");
         Integer id = Integer.parseInt(readLine());
-        DeviceConroller.getInstance().delete(id);
+        DeviceController.getInstance().delete(id);
     }
 
     /**
@@ -79,7 +78,7 @@ public class DeviceView {
         System.out.println("Enter a Model for the change or leave it empty to leave as is");
         String model = readLine();
 
-        DeviceConroller.getInstance().update(id, type, color, model);
+        DeviceController.getInstance().update(id, type, color, model);
 
     }
 
