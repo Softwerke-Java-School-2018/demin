@@ -1,5 +1,4 @@
 package com.miros.controller;
-
 import com.miros.Main;
 import com.miros.data.DateBase;
 import com.miros.data.entity.User;
@@ -7,7 +6,6 @@ import com.miros.data.entity.User;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 
 /**
  * Контроллер для пользователя

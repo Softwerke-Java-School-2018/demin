@@ -1,11 +1,11 @@
 package com.miros.controller;
 
 import com.miros.view.BaseView;
-import java.util.Scanner;
 
 public class BaseController {
 
     private static BaseView baseView = new BaseView();
+    private final Utils utils = new Utils();
 
     public BaseController() {
     }
@@ -14,8 +14,8 @@ public class BaseController {
         return baseView;
     }
 
-    public static void waitForEnter() {
-        while (Utils.readLine().equals("")) {
+    public void waitForEnter() {
+        if (utils.mainMenu().nextLine().equals("")) {
             baseView.baseMenu();
         }
     }
