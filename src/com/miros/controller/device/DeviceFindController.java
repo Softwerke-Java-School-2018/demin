@@ -1,40 +1,41 @@
-package com.miros.controller;
+package com.miros.controller.device;
 
-import com.miros.Main;
-import com.miros.data.DateBase;
+import com.miros.controller.BaseController;
+import com.miros.data.DAO.DeviceDAO;
 import com.miros.data.entity.Device;
+import com.miros.data.enums.DeviceColor;
 
 /**
  * Контроллер для поиска устройств
  */
 public class DeviceFindController extends BaseController {
-
     private static DeviceFindController deviceFindController = new DeviceFindController();
     public DeviceFindController(){}
 
     public static DeviceFindController getInstance(){
         return deviceFindController;
     }
-   public void idFind(Integer id){
-        System.out.println(DateBase.deviceList.get(id));
+    public void idFind(Integer id){
+        System.out.println();
         waitForEnter();
     }
-
     /**
      * Поиск по цвету устройства
      * @param color
      */
     public void deviceColorFind(String color){
-            for (Device device : DateBase.deviceList){
-                if(device.getDeviceColor().name().equalsIgnoreCase(color)){
+        if(!DeviceColor.getColorByString(color).equals(DeviceColor.NONE)) {
+            for (Device device : DeviceDAO.deviceDAO) {
+                if (device.getDeviceColor().name().equalsIgnoreCase(color)) {
                     System.out.println(device.toString());
                 }
             }
-        waitForEnter();
+            waitForEnter();
+        }
     }
 
     public void nameFind(String name) {
-        for (Device device : DateBase.deviceList){
+        for (Device device : DeviceDAO.deviceDAO){
             if(device.getModel().equals(name)){
                 System.out.println(device.toString());
             }
@@ -46,7 +47,7 @@ public class DeviceFindController extends BaseController {
      * @param type
      */
     public void deviceTypeFind(String type){
-        for (Device device : DateBase.deviceList){
+        for (Device device : DeviceDAO.deviceDAO){
             if(device.getDeviceType().name().equalsIgnoreCase(type)){
                 System.out.println(device.toString());
             }
@@ -57,7 +58,7 @@ public class DeviceFindController extends BaseController {
      * Вывод всех устройств
      */
     public void showAll(){
-        for(Device device : DateBase.deviceList){
+        for(Device device : DeviceDAO.deviceDAO){
             System.out.println(device);
         }
         waitForEnter();

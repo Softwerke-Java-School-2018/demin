@@ -1,7 +1,7 @@
-package com.miros.view;
+package com.miros.view.user;
 
-import com.miros.controller.UserController;
-import com.miros.data.entity.UserActivity;
+import com.miros.Utils;
+import com.miros.controller.user.UserController;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,11 +11,13 @@ public class UserView {
 
     // private UserController userController = new UserController();
 
+    private static final String USER_VIEW="Enter the command number:\n" +
+            "1 - user create\n" +
+            "2 - user remove\n" +
+            "3 - user update\n";
+
     public void userMenu() {
-        System.out.println("Enter the command number:\n" +
-                "1 - user create\n" +
-                "2 - user remove\n" +
-                "3 - user update\n");
+        Utils.printLine(USER_VIEW);
         String command = readLine();
         switch (command) {
             case "1":
@@ -40,13 +42,13 @@ public class UserView {
      * Создание пользователя и вызов контроллера
      */
     private void createReader(){
-        System.out.println("Enter Name");
+        Utils.printLine("Enter Name");
         String name = readLine();
 
-        System.out.println("Enter Surname");
+        Utils.printLine("Enter Surname");
         String surname = readLine();
 
-        System.out.println("Enter Patronymic");
+        Utils.printLine("Enter Patronymic");
         String patronymic = readLine();
 
         System.out.println("Enter BirthDay like 04/10/1983");
@@ -70,16 +72,16 @@ public class UserView {
      */
 
     private void updateReader(){
-        System.out.println("Enter id element to update");
+        Utils.printLine("Enter id element to update");
         Integer id = Integer.parseInt(readLine());
-        System.out.println("Enter a Name for the change or leave it empty to leave as is");
+        Utils.printLine("Enter a Name for the change or leave it empty to leave as is");
         String name = readLine();
-        System.out.println("Enter a Surname for the change or leave it empty to leave as is");
+        Utils.printLine("Enter a Surname for the change or leave it empty to leave as is");
         String surname = readLine();
-        System.out.println("Enter a Patronymic for the change or leave it empty to leave as is");
+        Utils.printLine("Enter a Patronymic for the change or leave it empty to leave as is");
         String patronymic = readLine();
 
-        System.out.println("Enter BirthDay like 04/10/1983 for the change or leave it empty to leave as is");
+        Utils.printLine("Enter BirthDay like 04/10/1983 for the change or leave it empty to leave as is");
         String birthDay = readLine();
 
         UserController.getInstance().update(id, name, surname, patronymic, birthDay);

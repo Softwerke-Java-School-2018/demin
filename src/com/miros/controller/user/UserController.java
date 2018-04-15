@@ -1,9 +1,9 @@
-package com.miros.controller;
-import com.miros.Main;
-import com.miros.data.DateBase;
+package com.miros.controller.user;
+import com.miros.Utils;
+import com.miros.controller.BaseController;
+import com.miros.data.DAO.UserDAO;
 import com.miros.data.entity.User;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  * Контроллер для пользователя
  */
 
-public class UserController extends BaseController  {
+public class UserController extends BaseController {
     private static UserController userController = new UserController();
 
     public UserController(){}
@@ -28,35 +28,35 @@ public class UserController extends BaseController  {
      * @return
      */
     public void create(String name, String surname, String patronymic, LocalDate localDate) {
-        DateBase.userList.add(new User(name, surname, patronymic, localDate));
-        System.out.println("User created");
+        UserDAO.userDAO.add(new User(name, surname, patronymic, localDate));
+        Utils.printLine("User created");
         waitForEnter();
     }
     public void delete(Integer id){
-        DateBase.userList.remove(id);
-        System.out.println("User deleted");
+        UserDAO.userDAO.remove(id);
+        Utils.printLine("User deleted");
         waitForEnter();
     }
     public void update(Integer id, String name, String surname, String patronymic, String birthDay){
         if(!name.equals("")){
-            DateBase.userList.get(id).setName(name);
+            UserDAO.userDAO.get(id).setName(name);
         }
         if(!surname.equals("")){
-            DateBase.userList.get(id).setSurname(surname);
+            UserDAO.userDAO.get(id).setSurname(surname);
         }
         if(!patronymic.equals("")){
-            DateBase.userList.get(id).setSurname(surname);
+            UserDAO.userDAO.get(id).setSurname(surname);
         }
         if(!surname.equals("")){
-            DateBase.userList.get(id).setSurname(surname);
+            UserDAO.userDAO.get(id).setSurname(surname);
         }
         LocalDate localDate;
         if(!birthDay.equals("")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             localDate = LocalDate.parse(birthDay, formatter);
-            DateBase.userList.get(id).setBirthDay(localDate);
+            UserDAO.userDAO.get(id).setBirthDay(localDate);
         }
-        System.out.println("User uptated");
+        Utils.printLine("User uptated");
         waitForEnter();
     }
 }

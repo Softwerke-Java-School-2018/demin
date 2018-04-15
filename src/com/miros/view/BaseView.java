@@ -1,9 +1,9 @@
 package com.miros.view;
 
-import com.miros.controller.BaseController;
-
-import java.util.Scanner;
-
+import com.miros.Utils;
+import com.miros.view.activity.UserActivityView;
+import com.miros.view.device.DeviceView;
+import com.miros.view.user.UserView;
 
 /**
  * Главный раздел модуля View
@@ -15,6 +15,12 @@ public class BaseView {
     private UserActivityView userActivityView;
     private FindView findView;
 
+    private final String BASE_VIEW = "Enter the section number: \n" +
+            "1 - user management \n" +
+            "2 - device management \n" +
+            "3 - managing the history of purchases \n" +
+            "4 - search \n";
+
 
     public BaseView() {
         this.userView = new UserView();
@@ -24,13 +30,8 @@ public class BaseView {
     }
 
     public void baseMenu() {
-            System.out.println("Enter the section number: \n" +
-                    "1 - user management \n" +
-                    "2 - device management \n" +
-                    "3 - managing the history of purchases \n" +
-                    "4 - search \n");
-
-            String command = readLine();
+        Utils.printLine(BASE_VIEW);
+            String command = Utils.readLine();
             switch (command) {
                 case "1":
                     userView.userMenu();
@@ -42,11 +43,4 @@ public class BaseView {
                     findView.findMenu();
             }
         }
-
-    public String readLine(){
-        Scanner scanner = new Scanner(System.in);
-        String str = scanner.nextLine();
-        return str;
-    }
-
 }

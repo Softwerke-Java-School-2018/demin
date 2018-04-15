@@ -1,7 +1,8 @@
-package com.miros.controller;
+package com.miros.controller.device;
 
-import com.miros.Main;
-import com.miros.data.DateBase;
+import com.miros.Utils;
+import com.miros.controller.BaseController;
+import com.miros.data.DAO.DeviceDAO;
 import com.miros.data.entity.Device;
 import com.miros.data.enums.DeviceColor;
 import com.miros.data.enums.DeviceType;
@@ -22,14 +23,14 @@ public class DeviceController extends BaseController {
     }
 
         public void create(DeviceType deviceType, DeviceColor deviceColor, String model) {
-            DateBase.deviceList.add(new Device(deviceType, deviceColor, model));
-            System.out.println("Device created");
+            DeviceDAO.deviceDAO.add(new Device(deviceType, deviceColor, model));
+            Utils.printLine("Device created");
             waitForEnter();
         }
 
         public void delete(Integer id){
-            DateBase.deviceList.remove(id);
-            System.out.println("Device deleted");
+            DeviceDAO.deviceDAO.remove(id);
+            Utils.printLine("Device deleted");
             waitForEnter();
         }
 
@@ -38,18 +39,18 @@ public class DeviceController extends BaseController {
                 if(DeviceType.getTypeByString(color).equals(DeviceType.NONE)){
                     DeviceController.getInstance().getBaseView().baseMenu();
                 } else {
-                    DateBase.deviceList.get(id).setDeviceType(DeviceType.getTypeByString(type));
+                    DeviceDAO.deviceDAO.get(id).setDeviceType(DeviceType.getTypeByString(type));
                 }
             }
             if(!color.equals("")){
                 if(DeviceColor.getColorByString(color).equals(DeviceColor.NONE)){
                     DeviceController.getInstance().getBaseView().baseMenu();
                 } else {
-                    DateBase.deviceList.get(id).setDeviceType(DeviceType.getTypeByString(type));
+                    DeviceDAO.deviceDAO.get(id).setDeviceType(DeviceType.getTypeByString(type));
                 }
             }
             if(!model.equals("")){
-                DateBase.deviceList.get(id).setModel(model);
+                DeviceDAO.deviceDAO.get(id).setModel(model);
             }
 
             waitForEnter();

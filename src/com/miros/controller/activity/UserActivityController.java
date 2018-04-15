@@ -1,7 +1,10 @@
-package com.miros.controller;
+package com.miros.controller.activity;
 
-import com.miros.Main;
-import com.miros.data.DateBase;
+import com.miros.Utils;
+import com.miros.controller.BaseController;
+import com.miros.data.DAO.DeviceDAO;
+import com.miros.data.DAO.UserActivityDAO;
+import com.miros.data.DAO.UserDAO;
 import com.miros.data.entity.Device;
 import com.miros.data.entity.User;
 import com.miros.data.entity.UserActivity;
@@ -24,19 +27,18 @@ public class UserActivityController extends BaseController {
 
     public void create(Integer userId, Integer deviceId, LocalDate localDate){
 
-        User user = DateBase.userList.get(userId);
-        Device device = DateBase.deviceList.get(deviceId);
+        User user = UserDAO.userDAO.get(userId);
+        Device device = DeviceDAO.deviceDAO.get(deviceId);
 
-        DateBase.userActivityList.add(new UserActivity(user, device, localDate));
-        System.out.println("Purchase created");
+        UserActivityDAO.userActivityDAO.add(new UserActivity(user, device, localDate));
+        Utils.printLine("Purchase created");
         waitForEnter();
     }
-// Как правильно сделать наследование?
 
+    // Как правильно сделать наследование?
     public void delete(Integer id){
-        DateBase.userActivityList.remove(id);
-        System.out.println("Purchase deleted");
+        UserActivityDAO.userActivityDAO.remove(id);
+        Utils.printLine("Purchase deleted");
         waitForEnter();
     }
-
 }

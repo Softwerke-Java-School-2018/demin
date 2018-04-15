@@ -1,5 +1,6 @@
 package com.miros.controller;
 
+import com.miros.Utils;
 import com.miros.view.BaseView;
 
 public class BaseController {
@@ -15,8 +16,15 @@ public class BaseController {
     }
 
     public void waitForEnter() {
-        if (utils.mainMenu().nextLine().equals("")) {
-            baseView.baseMenu();
+        while(true) {
+            Utils.printLine("Pres Enter to back in main menu");
+            String str = utils.scanner().nextLine();
+            if(str.equals("")){
+                baseView.baseMenu();
+            }
+            else {
+                Utils.printLine("It's wrong, try again");
+            }
         }
     }
 }

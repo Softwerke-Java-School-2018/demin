@@ -1,16 +1,19 @@
-package com.miros.view;
+package com.miros.view.activity;
 
-import com.miros.controller.UserActivityController;
+import com.miros.Utils;
+import com.miros.controller.activity.UserActivityController;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
 public class UserActivityView  {
-    public void userActivityMenu() {
-        System.out.println("Enter the section number:\n" +
-                "1 - create a purchase entry\n" +
-                "2 - delete a purchase entry\n");
 
+    private final String USER_ACTIVITY_VIEW="Enter the section number:\n" +
+            "1 - create a purchase entry\n" +
+            "2 - delete a purchase entry\n";
+
+    public void userActivityMenu() {
+        Utils.printLine(USER_ACTIVITY_VIEW);
         String command = readLine();
         switch (command) {
             case "1":
@@ -27,10 +30,10 @@ public class UserActivityView  {
     }
 
     void createUserActivityView(){
-        System.out.println("Enter the Id of the user who makes the purchase");
+        Utils.printLine("Enter the Id of the user who makes the purchase");
         Integer userId = Integer.parseInt(readLine());
 
-        System.out.println("Enter the Id of the item you want to purchase");
+        Utils.printLine("Enter the Id of the item you want to purchase");
         Integer deviceId = Integer.parseInt(readLine());
         LocalDate localDate = LocalDate.now();
 
@@ -38,7 +41,7 @@ public class UserActivityView  {
     }
 
     void deleteUserActivityView(){
-        System.out.println("Enter purchase id");
+        Utils.printLine("Enter purchase id");
         Integer uavId = Integer.parseInt(readLine());
         UserActivityController.getInstance().delete(uavId);
     }

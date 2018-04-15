@@ -1,7 +1,8 @@
-package com.miros.controller;
+package com.miros.controller.activity;
 
-import com.miros.Main;
-import com.miros.data.DateBase;
+import com.miros.Utils;
+import com.miros.controller.BaseController;
+import com.miros.data.DAO.UserActivityDAO;
 import com.miros.data.entity.UserActivity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,8 +12,6 @@ import java.time.format.DateTimeFormatter;
  */
 
 public class UserActivityFindController extends BaseController {
-
-
     private static UserActivityFindController userActivityFindController = new UserActivityFindController();
 
     public  UserActivityFindController(){}
@@ -25,9 +24,9 @@ public class UserActivityFindController extends BaseController {
      * @param userName
      */
     public void userNameFind(String userName){
-        for (UserActivity userActivity : DateBase.userActivityList){
+        for (UserActivity userActivity : UserActivityDAO.userActivityDAO){
              if(userActivity.getUser().getName().equals(userName)){
-                 System.out.println(userActivity);
+                 Utils.printLine(userActivity);
              }
         }
         waitForEnter();
@@ -39,23 +38,21 @@ public class UserActivityFindController extends BaseController {
      * @param model
      */
     public void deviceModelFind(String model){
-        for (UserActivity userActivity : DateBase.userActivityList){
+        for (UserActivity userActivity : UserActivityDAO.userActivityDAO){
             if(userActivity.getDevice().getModel().equals(model)){
-                System.out.println(userActivity);
+                Utils.printLine(userActivity);
             }
         }
         waitForEnter();
     }
-
     /**
      * Поиск по ID чека(Истории покупок)
      * @param userActivityId
      */
     public void userActivityIdFind(Integer userActivityId){
-        System.out.println(DateBase.userActivityList.get(userActivityId));
+        Utils.printLine(UserActivityDAO.userActivityDAO.get(userActivityId));
         waitForEnter();
     }
-
     /**
      * Поиск по дате
      * @param date
@@ -63,9 +60,9 @@ public class UserActivityFindController extends BaseController {
     public void localDateFind(String date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse(date, formatter);
-        for (UserActivity userActivity : DateBase.userActivityList){
+        for (UserActivity userActivity : UserActivityDAO.userActivityDAO){
             if(userActivity.getLocalDate().equals(localDate)){
-                System.out.println(userActivity);
+                Utils.printLine(userActivity);
             }
         }
         waitForEnter();
