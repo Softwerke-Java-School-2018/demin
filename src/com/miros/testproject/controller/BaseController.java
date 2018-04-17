@@ -1,26 +1,29 @@
 package com.miros.testproject.controller;
 
 import com.miros.testproject.Utils;
-import com.miros.testproject.view.BaseView;
+import com.miros.testproject.data.DAO.DeviceDAO;
+import com.miros.testproject.data.DAO.UserActivityDAO;
+import com.miros.testproject.data.DAO.UserDAO;
+import com.miros.testproject.view.MainView;
 
 public class BaseController {
 
-    private static BaseView baseView = new BaseView();
+    private static MainView mainView = new MainView();
     private final Utils utils = new Utils();
 
     public BaseController() {
     }
 
-    protected BaseView getBaseView() {
-        return baseView;
+    protected MainView getBaseView() {
+        return mainView;
     }
 
     public void waitForEnter() {
         while(true) {
-            Utils.printLine("Pres Enter to back in main menu");
+            Utils.printLine("Press Enter to back in main menu");
             String str = utils.scanner().nextLine();
             if(str.equals("")){
-                baseView.baseMenu();
+                mainView.baseMenu();
             }
             else {
                 Utils.printLine("It's wrong, try again");

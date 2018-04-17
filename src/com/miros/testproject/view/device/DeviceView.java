@@ -9,7 +9,10 @@ import com.miros.testproject.data.enums.DeviceType;
  * View для управления устройствами
  */
 public class DeviceView {
-    private static final String DEVICE_VIEW="Enter the command number:\n" +
+
+    private DeviceController deviceController = DeviceController.getInstance();
+
+    private static final String DEVICE_VIEW = "Enter the command number:\n" +
             "1 - device create\n" +
             "2 - device remove\n" +
             "3 - device update\n";
@@ -29,25 +32,21 @@ public class DeviceView {
 
     private void createDevice() {
         Utils.printLine("Enter type");
-        String type = Utils.readLine();
-
-        DeviceType deviceType = DeviceType.getTypeByString(type);
+        String deviceType = Utils.readLine();
 
         Utils.printLine("Enter color");
-        String color = Utils.readLine();
-
-        DeviceColor deviceColor = DeviceColor.getColorByString(color);
+        String deviceColor = Utils.readLine();
 
         Utils.printLine("Enter model");
         String model = Utils.readLine().toUpperCase();
 
-        DeviceController.getInstance().create(deviceType, deviceColor, model);
+        deviceController.create(deviceType, deviceColor, model);
     }
 
     private void deleteDevice() {
         Utils.printLine("Enter Id");
         Integer id = Integer.parseInt(Utils.readLine());
-        DeviceController.getInstance().delete(id);
+        deviceController.delete(id);
     }
 
     private void updateDevice() {
@@ -59,7 +58,6 @@ public class DeviceView {
         String color = Utils.readLine();
         Utils.printLine("Enter a Model for the change or leave it empty to leave as is");
         String model = Utils.readLine();
-
-        DeviceController.getInstance().update(id, type, color, model);
+        deviceController.update(id, type, color, model);
     }
 }

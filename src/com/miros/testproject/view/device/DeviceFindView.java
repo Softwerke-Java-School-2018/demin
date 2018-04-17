@@ -4,30 +4,33 @@ import com.miros.testproject.Utils;
 import com.miros.testproject.controller.device.DeviceFindController;
 
 public class DeviceFindView {
-    private final String DEVICE_FIND_VIEW="Choose which parameter will be searched\n" +
+
+    private DeviceFindController deviceFindController = DeviceFindController.getInstance();
+
+    private final String DEVICE_FIND_VIEW = "Choose which parameter will be searched\n" +
             "1 - id\n" +
             "2 - Type\n" +
             "3 - Color\n" +
             "4 - Show all devices";
 
-    public void deviceFinder(){
+    public void deviceFinder() {
         Utils.printLine(DEVICE_FIND_VIEW);
         String num = Utils.readLine();
         switch (num) {
             case "1":
                 Utils.printLine("Enter id");
                 Integer id = Integer.parseInt(Utils.readLine());
-                DeviceFindController.getInstance().idFind(id);
+                deviceFindController.idFind(id);
             case "2":
                 Utils.printLine("Enter type");
                 String type = Utils.readLine();
-                DeviceFindController.getInstance().deviceTypeFind(type);
+                deviceFindController.deviceTypeFind(type);
             case "3":
                 Utils.printLine("Enter color");
                 String color = Utils.readLine();
-                DeviceFindController.getInstance().deviceColorFind(color);
+                deviceFindController.deviceColorFind(color);
             case "4":
-                DeviceFindController.getInstance().showAll();
+                deviceFindController.showAll();
         }
     }
 }

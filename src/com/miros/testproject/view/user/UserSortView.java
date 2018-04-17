@@ -4,6 +4,9 @@ import com.miros.testproject.Utils;
 import com.miros.testproject.controller.user.UserSortController;
 
 public class UserSortView {
+
+    private UserSortController userSortController = UserSortController.getInstance();
+
     private final String USER_FIND_VIEW="Choose which parameter use for sort\n" +
             "1 - Name\n" +
             "2 - Surname\n" +
@@ -15,7 +18,7 @@ public class UserSortView {
         String num = Utils.readLine();
         switch (num) {
             case "1":
-                UserSortController.getInstance().sortByBirthDay();
+                userSortController.sortByBirthDay();
         }
     }
 }

@@ -8,9 +8,11 @@ import com.miros.testproject.data.entity.User;
 import com.miros.testproject.data.entity.UserActivity;
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
-import com.miros.testproject.view.BaseView;
+import com.miros.testproject.view.MainView;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -19,6 +21,10 @@ public class Main {
     /**
      * Каталоги Пользователей, Устройств и Истории покупок
      */
+
+    private static DeviceDAO deviceDAO = DeviceDAO.getInstance();
+    private static UserDAO userDAO = UserDAO.getInstance();
+    private static UserActivityDAO userActivityDAO = UserActivityDAO.getInstance();
 
 
     public static void main(String[] args) {
@@ -31,25 +37,40 @@ public class Main {
         DeviceType deviceType2 = DeviceType.TABLET;
         DeviceColor deviceColor2 = DeviceColor.BLACK;
 
+        deviceDAO.add(new Device(deviceType, deviceColor,"asus7735"));
+        deviceDAO.add(new Device(deviceType1, deviceColor1,"nokiaX20"));
+        deviceDAO.add(new Device(deviceType2, deviceColor2,"Samsung345"));
+        deviceDAO.add(new Device(deviceType, deviceColor,"asus33"));
+        deviceDAO.add(new Device(deviceType1, deviceColor1,"nok"));
+        deviceDAO.add(new Device(deviceType2, deviceColor2,"Samsu"));
 
-
-        DeviceDAO.deviceDAO.add(new Device(deviceType, deviceColor,"asus7735"));
-        DeviceDAO.deviceDAO.add(new Device(deviceType1, deviceColor1,"nokiaX20"));
-        DeviceDAO.deviceDAO.add(new Device(deviceType2, deviceColor2,"Samsung345"));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse("12/12/1999", formatter);
         LocalDate localDate1 = LocalDate.parse("04/10/1983", formatter);
 
-        UserDAO.userDAO.add(new User("Alex","Alexov","Alexovich",localDate));
-        UserDAO.userDAO.add(new User("Glex2","Alexov2","Alexovich2",localDate1));
-        UserDAO.userDAO.add(new User("Alex","Alfxov","Alexovich3",LocalDate.now()));
+        userDAO.add(new User("Sergey","Semenovv","Alexovich",localDate));
+        userDAO.add(new User("Juri","Rusakov","Fedorovich",localDate1));
+        userDAO.add(new User("Alex","Agafonof","Petrovich",LocalDate.now()));
 
-        UserActivityDAO.userActivityDAO.add(new UserActivity(UserDAO.userDAO.get(0), DeviceDAO.deviceDAO.get(0),  LocalDate.now()));
-        UserActivityDAO.userActivityDAO.add(new UserActivity(UserDAO.userDAO.get(1), DeviceDAO.deviceDAO.get(1),  LocalDate.now()));
+        List<Device> deviceList = new ArrayList();
+        List<Device> deviceList2 = new ArrayList();
 
-        BaseView baseView = new BaseView();
-        baseView.baseMenu();
+        deviceList.add(deviceDAO.get(0));
+        deviceList.add(deviceDAO.get(1));
+        deviceList.add(deviceDAO.get(2));
+
+        deviceList2.add(deviceDAO.get(1));
+        deviceList2.add(deviceDAO.get(2));
+        deviceList2.add(deviceDAO.get(4));
+        deviceList2.add(deviceDAO.get(5));
+
+        userActivityDAO.add(new UserActivity(userDAO.get(0), deviceList,  LocalDate.now()));
+        userActivityDAO.add(new UserActivity(userDAO.get(1), deviceList,  LocalDate.now()));
+        userActivityDAO.add(new UserActivity(userDAO.get(2), deviceList2,  LocalDate.now()));
+
+        MainView mainView = new MainView();
+        mainView.baseMenu();
 
     }
 }

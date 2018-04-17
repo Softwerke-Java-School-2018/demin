@@ -3,14 +3,14 @@ package com.miros.testproject.data.entity;
 import java.time.LocalDate;
 
 public class User {
-    private static long userId=0;
+    private static long userId = 0;
     private long id;
     private String name;
     private String surname;
     private String patronymic;
     private LocalDate birthDay;
 
-    public User(String name, String surname, String patronymic, LocalDate birthDay){
+    public User(String name, String surname, String patronymic, LocalDate birthDay) {
         this.id = userId++;
         this.name = name;
         this.surname = surname;
@@ -18,7 +18,8 @@ public class User {
         this.birthDay = birthDay;
     }
 
-    public User(){}
+    public User() {
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -62,6 +63,6 @@ public class User {
 
     @Override
     public String toString() {
-        return id+" "+name+" "+surname+" "+patronymic+" "+birthDay.toString();
+        return id + " " + name + " " + surname + " " + patronymic + " " + birthDay.toString();
     }
 }

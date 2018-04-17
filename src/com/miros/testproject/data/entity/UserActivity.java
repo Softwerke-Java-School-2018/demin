@@ -1,52 +1,54 @@
 package com.miros.testproject.data.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class UserActivity {
     private  static long userActivityId=0;
     private long id;
     private User user;
-    private Device device;
+    private List<Device> deviceList;
     private LocalDate localDate;
 
-    public UserActivity(){}
-
-    public UserActivity(User user, Device device, LocalDate localDate){
+    public UserActivity(User user, List<Device> deviceList, LocalDate localDate){
         this.id=userActivityId++;
         this.user = user;
-        this.device = device;
+        this.deviceList = deviceList;
         this.localDate = localDate;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
-
-    public void setDevice(Device device) {
-        this.device = device;
+    public void setDeviceList(List<Device> deviceList) {
+        this.deviceList = deviceList;
     }
-
     public void setLocalDate(LocalDate localDate) {
         this.localDate = localDate;
     }
-
     public User getUser() {
         return user;
     }
 
-    public Device getDevice() {
-        return device;
+    public UserActivity getUserActivity() {
+        return this;
+    }
+
+    public List<Device> getDeviceList() {
+        return deviceList;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public LocalDate getLocalDate() {
         return localDate;
     }
-
     @Override
     public String toString() {
-        return  id +
+        return  id + " " +
                 user.toString() +"\n"+
-                device.toString()+"\n"+
+                deviceList.toString()+"\n"+
                 localDate.toString();
     }
 }

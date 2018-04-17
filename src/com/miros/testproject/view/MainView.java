@@ -1,6 +1,9 @@
 package com.miros.testproject.view;
 
 import com.miros.testproject.Utils;
+import com.miros.testproject.controller.activity.UserActivityController;
+import com.miros.testproject.controller.device.DeviceController;
+import com.miros.testproject.controller.user.UserController;
 import com.miros.testproject.view.activity.UserActivityView;
 import com.miros.testproject.view.device.DeviceView;
 import com.miros.testproject.view.user.UserView;
@@ -8,7 +11,7 @@ import com.miros.testproject.view.user.UserView;
 /**
  * Main View
  */
-public class BaseView {
+public class MainView {
 
     private UserView userView;
     private DeviceView deviceView;
@@ -21,8 +24,7 @@ public class BaseView {
             "3 - managing the history of purchases \n" +
             "4 - search \n";
 
-
-    public BaseView() {
+    public MainView() {
         this.userView = new UserView();
         this.deviceView = new DeviceView();
         this.userActivityView = new UserActivityView();

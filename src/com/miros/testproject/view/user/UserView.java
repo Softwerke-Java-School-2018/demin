@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class UserView {
 
-    // private UserController userController = new UserController();
+    private static UserController userController = UserController.getInstance();
 
     private static final String USER_VIEW="Enter the command number:\n" +
             "1 - user create\n" +
@@ -44,15 +44,14 @@ public class UserView {
         System.out.println("Enter BirthDay like 04/10/1983");
         String birthDay = Utils.readLine();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(birthDay, formatter);
-        UserController.getInstance().create(name, surname, patronymic, localDate);
+
+        userController.create(name, surname, patronymic, birthDay);
     }
 
     private void deleteReader(){
         System.out.println("Enter Id");
         Integer id = Integer.parseInt(Utils.readLine());
-        UserController.getInstance().delete(id);
+        userController.delete(id);
     }
 
 
@@ -69,7 +68,7 @@ public class UserView {
         Utils.printLine("Enter BirthDay like 04/10/1983 for the change or leave it empty to leave as is");
         String birthDay = Utils.readLine();
 
-        UserController.getInstance().update(id, name, surname, patronymic, birthDay);
+        userController.update(id, name, surname, patronymic, birthDay);
     }
 }
 

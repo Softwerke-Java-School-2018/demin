@@ -5,14 +5,16 @@ import com.miros.testproject.data.enums.DeviceType;
 
 public class Device {
 
-    private static long deviceId=0;
+    private static long deviceId = 0;
     private long id;
     private DeviceType deviceType;
     private DeviceColor deviceColor;
     private String model;
-    public Device(){}
 
-    public Device(DeviceType deviceType, DeviceColor deviceColor, String model){
+    public Device() {
+    }
+
+    public Device(DeviceType deviceType, DeviceColor deviceColor, String model) {
         this.id = deviceId++;
         this.deviceType = deviceType;
         this.deviceColor = deviceColor;
@@ -49,6 +51,6 @@ public class Device {
 
     @Override
     public String toString() {
-        return id + " "+deviceType.toString()+" "+deviceColor.toString()+" "+model;
+        return id + " " + deviceType.toString() + " " + deviceColor.toString() + " " + model;
     }
 }

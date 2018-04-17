@@ -5,9 +5,9 @@ public enum DeviceColor {
     WHITE,
     NONE;
 
-    public static DeviceColor getColorByString(String color){
-        for(DeviceColor deviceColor : values()) {
-            if(deviceColor.name().equalsIgnoreCase(color)){
+    public static DeviceColor getColorByString(String color) {
+        for (DeviceColor deviceColor : values()) {
+            if (deviceColor.name().equalsIgnoreCase(color)) {
                 return deviceColor;
             }
         }

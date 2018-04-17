@@ -33,5 +33,21 @@ public class Utils {
     public static void printLine(UserActivity userActivity) {
         System.out.println(userActivity);
     }
+
+    public static boolean answer(){
+        while (true){
+            System.out.println("Enter y/n for continue or stop");
+            String answer = readLine();
+            if(answer.equalsIgnoreCase("y")){
+                return true;
+            }
+            else if(answer.equalsIgnoreCase("n")){
+                return false;
+            }
+            else {
+                System.out.println("Incorrect answer! Try again");
+            }
+        }
+    }
 }
 

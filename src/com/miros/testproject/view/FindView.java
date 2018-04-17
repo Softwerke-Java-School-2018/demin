@@ -6,14 +6,14 @@ import com.miros.testproject.view.device.DeviceFindView;
 import com.miros.testproject.view.user.UserFindView;
 
 
-public class FindView {
+public class FindView  {
     private UserFindView userFindView;
     private DeviceFindView deviceFindView;
     private UserActivityFindView userActivityFindView;
 
     private final String FIND_VIEW="Enter the section number:\n" +
-            "1 - devices search\n" +
-            "2 - users search\n" +
+            "1 - users search\n" +
+            "2 - devices search\n" +
             "3 - purchase history search\n";
 
     public FindView(){
@@ -27,9 +27,9 @@ public class FindView {
             String num = Utils.readLine();
             switch (num) {
                 case "1":
-                    deviceFindView.deviceFinder();
-                case "2":
                     userFindView.userFinder();
+                case "2":
+                    deviceFindView.deviceFinder();
                 case "3":
                     userActivityFindView.userActivityFinder();
             }
