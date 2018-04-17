@@ -56,6 +56,7 @@ public class UserActivityController extends BaseController {
             waitForEnter();
         }
         Utils.printLine("User with id:" + userId + " doesn't exist");
+        waitForEnter();
     }
 
     public void delete(Integer id) {

@@ -8,6 +8,8 @@ import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
 import com.miros.testproject.service.DeviceService;
 
+import javax.rmi.CORBA.Util;
+
 public class DeviceController extends BaseController {
     private static DeviceController deviceController = new DeviceController();
     private static  DeviceService deviceService = DeviceService.getInstance();
@@ -76,6 +78,7 @@ public class DeviceController extends BaseController {
             Utils.printLine("Device with " + id + " id number, doesn't exist");
             waitForEnter();
         }
+        Utils.printLine("Device updated!");
         waitForEnter();
     }
 

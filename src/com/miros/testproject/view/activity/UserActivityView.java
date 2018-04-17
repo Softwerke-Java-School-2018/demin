@@ -7,15 +7,15 @@ import com.miros.testproject.controller.device.DeviceFindController;
 import com.miros.testproject.controller.user.UserController;
 import com.miros.testproject.controller.user.UserFindController;
 import com.miros.testproject.data.entity.Device;
-import com.miros.testproject.data.entity.User;
-import com.miros.testproject.view.BaseView;
+
+
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class UserActivityView extends BaseView {
+public class UserActivityView {
     private UserActivityController userActivityController = UserActivityController.getInstance();
     private UserController userController = UserController.getInstance();
     private UserFindController userFindController = UserFindController.getInstance();
