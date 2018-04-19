@@ -1,9 +1,6 @@
 package com.miros.testproject.view;
 
-import com.miros.testproject.Utils;
-import com.miros.testproject.controller.activity.UserActivityController;
-import com.miros.testproject.controller.device.DeviceController;
-import com.miros.testproject.controller.user.UserController;
+import com.miros.testproject.Base;
 import com.miros.testproject.view.activity.UserActivityView;
 import com.miros.testproject.view.device.DeviceView;
 import com.miros.testproject.view.user.UserView;
@@ -11,13 +8,11 @@ import com.miros.testproject.view.user.UserView;
 /**
  * Main View
  */
-public class MainView extends BaseView {
-
+public class MainView extends Base {
     private UserView userView;
     private DeviceView deviceView;
     private UserActivityView userActivityView;
     private FindView findView;
-
     private final String BASE_VIEW = "Enter the section number: \n" +
             "1 - user management \n" +
             "2 - device management \n" +
@@ -30,7 +25,6 @@ public class MainView extends BaseView {
         this.userActivityView = new UserActivityView();
         this.findView = new FindView();
     }
-
     public void baseMenu() {
         utils.printLine(BASE_VIEW);
             String command = utils.readLine();
@@ -45,4 +39,16 @@ public class MainView extends BaseView {
                     findView.findMenu();
             }
         }
+    public DeviceView getDeviceView() {
+        return deviceView;
+    }
+    public UserView getUserView() {
+        return userView;
+    }
+    public UserActivityView getUserActivityView() {
+        return userActivityView;
+    }
+    public FindView getFindView() {
+        return findView;
+    }
 }

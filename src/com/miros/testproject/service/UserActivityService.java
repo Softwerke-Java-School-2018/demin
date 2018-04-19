@@ -9,8 +9,6 @@ import java.util.*;
 
 public class UserActivityService {
     private  List<UserActivity> userActivityDAO = UserActivityDAO.getInstance().getInstanceList();
-
-
     public boolean save(UserActivity userActivity){
         return userActivityDAO.add(userActivity);
     }

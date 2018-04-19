@@ -10,7 +10,6 @@ public class UserActivityFindView extends BaseView {
             "2 - userName\n" +
             "3 - Device_Model\n" +
             "4 - Date";
-
     public void userActivityFinder() {
         utils.printLine(USER_ACTIVITY_FIND_VIEW);
         String num = utils.readLine();

@@ -1,13 +1,10 @@
 package com.miros.testproject.controller.user;
 
-import com.miros.testproject.Utils;
 import com.miros.testproject.controller.BaseController;
-import com.miros.testproject.data.DAO.UserDAO;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.service.UserService;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class UserController extends BaseController {

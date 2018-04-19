@@ -7,7 +7,7 @@ import com.miros.testproject.data.entity.UserActivity;
 import java.util.Scanner;
 
 public class Utils {
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     private void out(String message){
         System.out.println(message);
     }
@@ -38,6 +38,19 @@ public class Utils {
             }
             else {
                 out("Incorrect answer! Try again");
+            }
+        }
+    }
+
+    public void waitForEnter() {
+        while(true) {
+            out("Press Enter to back in main menu");
+            String str = readLine();
+            if("".equals(str)){
+                Main.getMainView().baseMenu();
+            }
+            else {
+                out("It's wrong, try again");
             }
         }
     }

@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 public class UserService {
     private List<User> userDAO = UserDAO.getInstance().getInstanceList();
-
     public boolean save(User user){
         return userDAO.add(user);
     }

@@ -14,7 +14,6 @@ public class UserActivityView extends BaseView {
     private final String USER_ACTIVITY_VIEW = "Enter the section number:\n" +
             "1 - create a purchase entry\n" +
             "2 - delete a purchase entry\n";
-
     public void userActivityMenu() {
         utils.printLine(USER_ACTIVITY_VIEW);
         String command = utils.readLine();
