@@ -4,27 +4,34 @@ import com.miros.testproject.data.DAO.DeviceDAO;
 import com.miros.testproject.data.entity.Device;
 
 import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class DeviceService {
-    private static DeviceService deviceService = new DeviceService();
-    private static DeviceDAO deviceDAO = DeviceDAO.getInstance();
-
-    public static DeviceService getInstance() {
-        return deviceService;
+    private List<Device> deviceDAO = DeviceDAO.getInstance().getInstanceList();
+    public boolean save(Device device) {
+        return deviceDAO.add(device);
     }
-
-    public boolean exist(int id){
+    public Device find(int id) throws IndexOutOfBoundsException {
+        return deviceDAO.get(id);
+    }
+    public Device delete(int id) {
+        return deviceDAO.remove(id);
+    }
+    public boolean delete(Device device) {
+        return deviceDAO.remove(device);
+    }
+    public Stream<Device> findAll() {
+        return deviceDAO.stream();
+    }
+    public boolean exist(int id) {
         int size = deviceDAO.stream()
-                .filter(s-> s.getId() == id)
+                .filter(s -> s.getId() == id)
                 .collect(Collectors.toList())
                 .size();
-        if(size>0){
+        if (size > 0) {
             return true;
         }
         return false;
-    }
-
-    public Device idFind(int id) throws IndexOutOfBoundsException{
-         return deviceDAO.get(id);
     }
 }

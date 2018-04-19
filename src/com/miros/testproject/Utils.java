@@ -7,45 +7,37 @@ import com.miros.testproject.data.entity.UserActivity;
 import java.util.Scanner;
 
 public class Utils {
-
-    private static Scanner scanner = new Scanner(System.in);
-
-    public Scanner scanner() {
-        return scanner;
+    private Scanner scanner = new Scanner(System.in);
+    private void out(String message){
+        System.out.println(message);
     }
-
-    public static String readLine() {
+    public String readLine() {
         return scanner.nextLine();
     }
-
-    public static void printLine(String str) {
-        System.out.println(str);
+    public void printLine(String str) {
+        out(str);
     }
-
-    public static void printLine(User user) {
-        System.out.println(user);
+    public void printLine(User user) {
+        out(user.toString());
     }
-
-    public static void printLine(Device device) {
-        System.out.println(device);
+    public void printLine(Device device) {
+        out(device.toString());
     }
-
-    public static void printLine(UserActivity userActivity) {
-        System.out.println(userActivity);
+    public void printLine(UserActivity userActivity) {
+        out(userActivity.toString());
     }
-
-    public static boolean answer(){
+    public boolean answer(){
         while (true){
-            System.out.println("Enter y/n for continue or stop");
+            out("Enter y/n for continue or stop");
             String answer = readLine();
-            if(answer.equalsIgnoreCase("y")){
+            if("y".equalsIgnoreCase(answer)){
                 return true;
             }
-            else if(answer.equalsIgnoreCase("n")){
+            else if("n".equalsIgnoreCase(answer)){
                 return false;
             }
             else {
-                System.out.println("Incorrect answer! Try again");
+                out("Incorrect answer! Try again");
             }
         }
     }

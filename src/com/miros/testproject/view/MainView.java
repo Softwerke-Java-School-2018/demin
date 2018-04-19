@@ -11,7 +11,7 @@ import com.miros.testproject.view.user.UserView;
 /**
  * Main View
  */
-public class MainView {
+public class MainView extends BaseView {
 
     private UserView userView;
     private DeviceView deviceView;
@@ -32,8 +32,8 @@ public class MainView {
     }
 
     public void baseMenu() {
-        Utils.printLine(BASE_VIEW);
-            String command = Utils.readLine();
+        utils.printLine(BASE_VIEW);
+            String command = utils.readLine();
             switch (command) {
                 case "1":
                     userView.userMenu();

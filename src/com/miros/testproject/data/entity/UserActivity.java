@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class UserActivity {
-    private  static long userActivityId=0;
-    private long id;
+    private  static int userActivityId=0;
+    private int id;
     private User user;
     private List<Device> deviceList;
     private LocalDate localDate;
@@ -16,6 +16,7 @@ public class UserActivity {
         this.deviceList = deviceList;
         this.localDate = localDate;
     }
+
     public void setUser(User user) {
         this.user = user;
     }
@@ -28,19 +29,15 @@ public class UserActivity {
     public User getUser() {
         return user;
     }
-
     public UserActivity getUserActivity() {
         return this;
     }
-
     public List<Device> getDeviceList() {
         return deviceList;
     }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
-
     public LocalDate getLocalDate() {
         return localDate;
     }

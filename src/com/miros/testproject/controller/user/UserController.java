@@ -11,18 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class UserController extends BaseController {
-
-    private static UserController userController = new UserController();
-    private static UserService userService = UserService.getInstance();
-
-
-    public UserController() {
-    }
-
-    public static UserController getInstance() {
-        return userController;
-    }
-
+    private UserService userService = new UserService();
     /**
      * Create new user
      *
@@ -34,62 +23,52 @@ public class UserController extends BaseController {
      */
     public void create(String name, String surname, String patronymic, String birthDay) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate = LocalDate.parse(birthDay, formatter);
-
-            UserDAO.getInstance().add(new User(name, surname, patronymic, localDate));
-            Utils.printLine("User created");
+            localDate = LocalDate.parse(birthDay, formatter);
+            userService.save(new User(name, surname, patronymic, localDate));
+            utils.printLine("User created");
             waitForEnter();
         } catch (DateTimeParseException e) {
-            Utils.printLine("Invalid Date format, try again");
+            utils.printLine("Invalid Date format, try again");
             waitForEnter();
         }
     }
-
-    public void delete(Integer id) {
+    public void delete(int id) {
         try {
-            User user = UserDAO.getInstance().get(id);
-            if (UserDAO.getInstance().remove(user)) {
-                Utils.printLine("User deleted");
+            User user = userService.find(id);
+            if (userService.delete(user)) {
+                utils.printLine("User deleted");
             }
         } catch (IndexOutOfBoundsException e) {
-            Utils.printLine("User with " + id + " id number, doesn't exist");
+            utils.printLine("User with " + id + " id number, doesn't exist");
             waitForEnter();
         }
         waitForEnter();
     }
-
     public void update(int id, String name, String surname, String patronymic, String birthDay) {
         try {
-            User user = UserDAO.getInstance().get(id);
-
-            if (!birthDay.equals("")) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate localDate = LocalDate.parse(birthDay, formatter);
+            User user = userService.find(id);
+            if (!"".equals(birthDay)) {
+                localDate = LocalDate.parse(birthDay, formatter);
                 user.setBirthDay(localDate);
             }
-            if (!name.equals("")) {
+            if (!"".equals(name)) {
                 user.setName(name);
             }
-            if (!surname.equals("")) {
+            if (!"".equals(surname)) {
                 user.setSurname(surname);
             }
-            if (!patronymic.equals("")) {
+            if (!"".equals(patronymic)) {
                 user.setPatronymic(patronymic);
             }
         } catch (IndexOutOfBoundsException e) {
-            Utils.printLine("User with " + id + " id number, doesn't exist");
+            utils.printLine("User with " + id + " id number, doesn't exist");
             waitForEnter();
         } catch (DateTimeParseException ex) {
-            Utils.printLine("Invalid Date format, try again");
+            utils.printLine("Invalid Date format, try again");
             waitForEnter();
         }
-        Utils.printLine("User uptated");
+        utils.printLine("User uptated");
         waitForEnter();
-    }
-
-    public boolean exist(int id){
-        return userService.exist(id);
     }
 }
 

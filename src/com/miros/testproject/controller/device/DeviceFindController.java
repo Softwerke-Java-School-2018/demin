@@ -5,55 +5,55 @@ import com.miros.testproject.controller.BaseController;
 import com.miros.testproject.data.DAO.DeviceDAO;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.enums.DeviceColor;
+import com.miros.testproject.data.enums.DeviceType;
 import com.miros.testproject.service.DeviceService;
 
+import javax.rmi.CORBA.Util;
+
 public class DeviceFindController extends BaseController {
-    private static DeviceFindController deviceFindController = new DeviceFindController();
-    private static DeviceService deviceService = DeviceService.getInstance();
-
-    public DeviceFindController(){}
-
-    public static DeviceFindController getInstance(){
-        return deviceFindController;
-    }
-    public Device idFind(Integer id){
+    private DeviceService deviceService = new DeviceService();
+    public Device findId(Integer id) {
         try {
-            return deviceService.idFind(id);
-        } catch (IndexOutOfBoundsException e){
-            Utils.printLine(e.getMessage());
+            return deviceService.find(id);
+        } catch (IndexOutOfBoundsException e) {
+            utils.printLine(e.getMessage());
             waitForEnter();
-        }
-        return null;
-    }
-    public void deviceColorFind(String color){
-        if(!DeviceColor.getColorByString(color).equals(DeviceColor.NONE)) {
-            for (Device device : DeviceDAO.getInstance()) {
-                if (device.getDeviceColor().name().equalsIgnoreCase(color)) {
-                    System.out.println(device.toString());
-                }
-            }
-            waitForEnter();
+            return null;
         }
     }
-    public void modelFind(String name) {
-        for (Device device : DeviceDAO.getInstance()){
-            if(device.getModel().equals(name)){
-                System.out.println(device.toString());
-            }
-        }
-    }
-    public void deviceTypeFind(String type){
-        for (Device device : DeviceDAO.getInstance()){
-            if(device.getDeviceType().name().equalsIgnoreCase(type)){
-                System.out.println(device.toString());
-            }
+    public void findDeviceColor(String color) {
+        if (!DeviceColor.getColorByString(color).equals(DeviceColor.NONE)) {
+            deviceService
+                    .findAll()
+                    .filter(s -> s.getDeviceColor()
+                            .name()
+                            .equalsIgnoreCase(color))
+                    .forEach(e -> utils.printLine(e));
         }
         waitForEnter();
     }
-    public void showAll(){
-        for(Device device : DeviceDAO.getInstance()){
-            System.out.println(device);
+    public void findModel(String model) {
+        deviceService
+                .findAll()
+                .filter(s -> s.getModel().equalsIgnoreCase(model))
+                .forEach(e -> utils.printLine(e));
+    }
+    public void findDeviceType(String type) {
+        DeviceType deviceType = DeviceType.getTypeByString(type);
+        if(!deviceType.equals(DeviceType.NONE)){
+            deviceService
+                    .findAll()
+                    .filter(s -> s.getDeviceType()
+                            .name()
+                            .equalsIgnoreCase(type))
+                    .forEach(e -> utils.printLine(e));
         }
+        waitForEnter();
+    }
+    public void showAll() {
+        deviceService
+                .findAll()
+                .forEach(e->utils.printLine(e));
         waitForEnter();
     }
 }

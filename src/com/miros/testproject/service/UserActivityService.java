@@ -3,26 +3,37 @@ package com.miros.testproject.service;
 import com.miros.testproject.data.DAO.UserActivityDAO;
 import com.miros.testproject.data.entity.UserActivity;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.*;
 
 public class UserActivityService {
-    private static UserActivityService userActivityService = new UserActivityService();
-    private static UserActivityDAO userActivityDAO = UserActivityDAO.getInstance();
+    private  List<UserActivity> userActivityDAO = UserActivityDAO.getInstance().getInstanceList();
 
-    public static UserActivityService getInstance() {
-        return userActivityService;
+
+    public boolean save(UserActivity userActivity){
+        return userActivityDAO.add(userActivity);
     }
-
-    public UserActivity save(UserActivity userActivity){
-         userActivityDAO.add(userActivity);
-         return userActivity;
-    }
-
     public UserActivity find(int id) throws IndexOutOfBoundsException{
         return userActivityDAO.get(id);
     }
-
-    public Stream<UserActivity> showAll(){
+    public UserActivity delete(int id){
+        return userActivityDAO.remove(id);
+    }
+    public boolean delete(UserActivity userActivity){
+        return userActivityDAO.remove(userActivity);
+    }
+    public Stream<UserActivity> findAll(){
        return userActivityDAO.stream();
+    }
+    public boolean exist(int id) {
+        int size = userActivityDAO.stream()
+                .filter(s -> s.getId() == id)
+                .collect(Collectors.toList())
+                .size();
+        if (size > 0) {
+            return true;
+        }
+        return false;
     }
 }

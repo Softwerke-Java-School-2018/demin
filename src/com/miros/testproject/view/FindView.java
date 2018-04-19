@@ -6,7 +6,7 @@ import com.miros.testproject.view.device.DeviceFindView;
 import com.miros.testproject.view.user.UserFindView;
 
 
-public class FindView  {
+public class FindView extends BaseView {
     private UserFindView userFindView;
     private DeviceFindView deviceFindView;
     private UserActivityFindView userActivityFindView;
@@ -23,8 +23,8 @@ public class FindView  {
     }
 
     public void findMenu() {
-        Utils.printLine(FIND_VIEW);
-            String num = Utils.readLine();
+        utils.printLine(FIND_VIEW);
+            String num = utils.readLine();
             switch (num) {
                 case "1":
                     userFindView.userFinder();

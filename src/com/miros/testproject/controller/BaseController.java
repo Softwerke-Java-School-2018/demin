@@ -1,32 +1,22 @@
 package com.miros.testproject.controller;
 
-import com.miros.testproject.Utils;
-import com.miros.testproject.data.DAO.DeviceDAO;
-import com.miros.testproject.data.DAO.UserActivityDAO;
-import com.miros.testproject.data.DAO.UserDAO;
+import com.miros.testproject.Base;
 import com.miros.testproject.view.MainView;
+import java.time.format.DateTimeFormatter;
 
-public class BaseController {
-
-    private static MainView mainView = new MainView();
-    private final Utils utils = new Utils();
-
-    public BaseController() {
-    }
-
-    protected MainView getBaseView() {
-        return mainView;
-    }
+public abstract class BaseController extends Base {
+    private MainView mainView = new MainView();
+    protected static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public void waitForEnter() {
         while(true) {
-            Utils.printLine("Press Enter to back in main menu");
-            String str = utils.scanner().nextLine();
-            if(str.equals("")){
+            utils.printLine("Press Enter to back in main menu");
+            String str = utils.readLine();
+            if("".equals(str)){
                 mainView.baseMenu();
             }
             else {
-                Utils.printLine("It's wrong, try again");
+                utils.printLine("It's wrong, try again");
             }
         }
     }
