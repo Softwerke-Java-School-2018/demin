@@ -22,4 +22,8 @@ public class User {
         this.patronymic = patronymic;
         this.birthDay = birthDay;
     }
+
+    public User getUser(){
+        return this;
+    }
 }

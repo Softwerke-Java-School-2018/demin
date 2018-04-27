@@ -9,21 +9,27 @@ import java.util.stream.Stream;
 
 public class DeviceService {
     private List<Device> deviceDAO = DeviceDAO.getInstance().getInstanceList();
+
     public boolean save(Device device) {
         return deviceDAO.add(device);
     }
+
     public Device find(int id) {
         return deviceDAO.get(id);
     }
+
     public Device delete(int id) {
         return deviceDAO.remove(id);
     }
+
     public boolean delete(Device device) {
         return deviceDAO.remove(device);
     }
+
     public Stream<Device> findAll() {
         return deviceDAO.stream();
     }
+
     public boolean exist(int id) {
         int size = deviceDAO.stream()
                 .filter(s -> s.getId() == id)

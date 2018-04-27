@@ -41,6 +41,7 @@ public class Utils {
             }
         }
     }
+
     public void waitForEnter() {
         while(true) {
             out("Press Enter to back in main menu");
