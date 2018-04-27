@@ -8,7 +8,6 @@ import com.miros.testproject.data.entity.User;
 import com.miros.testproject.data.entity.UserActivity;
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
-import com.miros.testproject.view.MainView;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -60,6 +59,5 @@ public class DataCreator {
         userActivityDAO.add(new UserActivity(userDAO.get(0), deviceList,  LocalDate.now()));
         userActivityDAO.add(new UserActivity(userDAO.get(1), deviceList,  LocalDate.now()));
         userActivityDAO.add(new UserActivity(userDAO.get(2), deviceList2,  LocalDate.now()));
-
     }
 }

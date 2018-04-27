@@ -1,10 +1,13 @@
 package com.miros.testproject.data.entity;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Data
+@ToString
 public class UserActivity {
     private  static int userActivityId=0;
     private int id;
@@ -19,37 +22,7 @@ public class UserActivity {
         this.localDate = localDate;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public void setDeviceList(List<Device> deviceList) {
-        this.deviceList = deviceList;
-    }
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
-    }
-    public User getUser() {
-        return user;
-    }
     public UserActivity getUserActivity() {
         return this;
-    }
-    public List<Device> getDeviceList() {
-        return deviceList;
-    }
-    public int getId() {
-        return id;
-    }
-    public LocalDate getLocalDate() {
-        return localDate;
-    }
-    @Override
-    public String toString() {
-        return  new ToStringBuilder(this)
-                .append("id",id)
-                .append("\nuser", user)
-                .append("\ndeviceList", deviceList)
-                .append("\ndate", localDate)
-                .toString();
     }
 }
