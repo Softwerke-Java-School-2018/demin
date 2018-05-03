@@ -35,6 +35,9 @@ public class DeviceFindView extends BaseClassView {
                 deviceFindController.findModel(model);
             case "5":
                 deviceFindController.showAll();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
     }
 }

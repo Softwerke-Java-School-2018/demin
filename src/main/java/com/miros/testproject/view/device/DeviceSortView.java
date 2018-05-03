@@ -1,4 +1,5 @@
 package com.miros.testproject.view.device;
+
 import com.miros.testproject.controller.device.DeviceSortController;
 import com.miros.testproject.view.BaseClassView;
 
@@ -7,12 +8,12 @@ import lombok.Data;
 @Data
 public class DeviceSortView extends BaseClassView {
     private DeviceSortController deviceSortController = new DeviceSortController();
-    private final String DEVICE_SORT_VIEW="Choose which parameter use for sort\n" +
+    private final String DEVICE_SORT_VIEW = "Choose which parameter use for sort\n" +
             "1 - Model\n" +
             "2 - Type\n" +
             "3 - Color\n";
 
-    public void deviceSort(){
+    public void deviceSort() {
         utils.printLine(DEVICE_SORT_VIEW);
         String num = utils.readLine();
         switch (num) {
@@ -22,6 +23,9 @@ public class DeviceSortView extends BaseClassView {
                 deviceSortController.sortByType();
             case "3":
                 deviceSortController.sortByColor();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
     }
 }

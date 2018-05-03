@@ -33,6 +33,10 @@ public class UserActivityFindView extends BaseClassView {
                 utils.printLine("Enter date like dd/MM/yyyy");
                 String date = utils.readLine();
                 userActivityFindController.localDateFind(date);
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
+
         }
     }
 }

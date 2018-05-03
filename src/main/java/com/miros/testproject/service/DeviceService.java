@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class DeviceService {
-    private List<Device> deviceDAO = DeviceDAO.getInstance().getInstanceList();
+    private List<Device> deviceDAO = DeviceDAO.getInstance().getDeviceList();
 
     public boolean save(Device device) {
         return deviceDAO.add(device);

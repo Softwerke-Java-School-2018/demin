@@ -15,7 +15,7 @@ public class UserActivitySortController extends BaseClassController {
         comparator = new UserActivityDateComparator();
         Collections.sort(tempUserActivityDAO, comparator);
         tempUserActivityDAO
-                .forEach(s-> utils.printLine(s));
+                .forEach(s -> utils.printLine(s));
         utils.sortFunc(userActivityFindController);
     }
 
@@ -23,7 +23,7 @@ public class UserActivitySortController extends BaseClassController {
         comparator = new UserActivityNameComparator();
         Collections.sort(tempUserActivityDAO, comparator);
         tempUserActivityDAO
-                .forEach(s->utils.printLine(s));
+                .forEach(s -> utils.printLine(s));
         utils.sortFunc(userActivityFindController);
     }
 }

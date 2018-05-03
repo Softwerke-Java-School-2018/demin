@@ -7,6 +7,7 @@ import com.miros.testproject.service.UserActivityService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.List;
 
@@ -37,16 +38,16 @@ public class UserActivityFindController extends BaseClassController {
                 .findAll()
                 .collect(Collectors.toList());
         List<UserActivity> tempList = new ArrayList<>();
-        int count = 0;
+        AtomicInteger count = new AtomicInteger(0);
         for (UserActivity userActivity : userActivityList) {
             for (Device device : userActivity.getDeviceList()) {
-                if (device.getModel().equalsIgnoreCase(model) && count == 0) {
+                if (device.getModel().equalsIgnoreCase(model) && count.get() == 0) {
                     utils.printLine(userActivity);
                     tempList.add(userActivity);
-                    count++;
+                    count.incrementAndGet();
                 }
             }
-            count = 0;
+            count.set(0);
         }
         tempUserActivityDAO.clear();
         tempUserActivityDAO.addAll(userActivityList);

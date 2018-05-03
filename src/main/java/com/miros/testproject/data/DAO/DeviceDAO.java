@@ -12,7 +12,7 @@ public class DeviceDAO {
         return deviceDAO;
     }
 
-    public List<Device> getInstanceList() {
+    public List<Device> getDeviceList() {
         return deviceList;
     }
 }

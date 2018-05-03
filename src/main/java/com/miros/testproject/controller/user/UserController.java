@@ -67,7 +67,7 @@ public class UserController extends BaseClassController {
             utils.printLine("Invalid Date format, try again");
             waitForEnter();
         }
-        utils.printLine("User uptated");
+        utils.printLine("User uptated!");
         waitForEnter();
     }
 }

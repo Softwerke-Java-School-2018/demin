@@ -12,6 +12,7 @@ public class DeviceView extends BaseClassView {
             "1 - device create\n" +
             "2 - device remove\n" +
             "3 - device update\n";
+
     public void deviceMenu() {
         utils.printLine(DEVICE_VIEW);
         String command = utils.readLine();
@@ -22,8 +23,12 @@ public class DeviceView extends BaseClassView {
                 deleteDevice();
             case "3":
                 updateDevice();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
     }
+
     private void createDevice() {
         utils.printLine("Enter type");
         String deviceType = utils.readLine();
@@ -33,11 +38,13 @@ public class DeviceView extends BaseClassView {
         String model = utils.readLine().toUpperCase();
         deviceController.create(deviceType, deviceColor, model);
     }
+
     private void deleteDevice() {
         utils.printLine("Enter Id");
         Integer id = Integer.parseInt(utils.readLine());
         deviceController.delete(id);
     }
+
     private void updateDevice() {
         utils.printLine("Enter id element to update");
         Integer id = Integer.parseInt(utils.readLine());

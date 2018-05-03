@@ -27,18 +27,22 @@ public class MainMenuView extends BaseClassView {
         this.findView = new FindView();
         this.baseSort = new BaseSort();
     }
+
     public void baseMenu() {
         utils.printLine(BASE_VIEW);
-            String command = utils.readLine();
-            switch (command) {
-                case "1":
-                    userView.userMenu();
-                case "2":
-                    deviceView.deviceMenu();
-                case "3":
-                    userActivityView.userActivityMenu();
-                case "4":
-                    findView.findMenu();
-            }
+        String command = utils.readLine();
+        switch (command) {
+            case "1":
+                userView.userMenu();
+            case "2":
+                deviceView.deviceMenu();
+            case "3":
+                userActivityView.userActivityMenu();
+            case "4":
+                findView.findMenu();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
+    }
 }

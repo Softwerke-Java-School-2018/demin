@@ -31,6 +31,9 @@ public class FindView extends BaseClassView {
                 deviceFindView.deviceFinder();
             case "3":
                 userActivityFindView.userActivityFinder();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
     }
 }

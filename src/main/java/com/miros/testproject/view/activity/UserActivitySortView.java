@@ -19,6 +19,8 @@ public class UserActivitySortView extends BaseClassView {
                 userActivitySortController.sortByUserName();
             case "2":
                 userActivitySortController.sortByDate();
+            default:
+                waitForEnter();
         }
     }
 }

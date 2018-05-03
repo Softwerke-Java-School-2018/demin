@@ -31,6 +31,9 @@ public class UserFindView extends BaseClassView {
                 userFindController.findBirthDay(birthDay);
             case "4":
                 userFindController.showAll();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
     }
 }

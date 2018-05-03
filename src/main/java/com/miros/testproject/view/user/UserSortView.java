@@ -7,13 +7,13 @@ import lombok.Data;
 @Data
 public class UserSortView extends BaseClassView {
     private UserSortController userSortController = new UserSortController();
-    private final String USER_SORT_VIEW="Choose which parameter use for sort\n" +
+    private final String USER_SORT_VIEW = "Choose which parameter use for sort\n" +
             "1 - Name\n" +
             "2 - Surname\n" +
             "3 - Patronymic\n" +
             "4 - BirthDay\n";
 
-    public void userSort(){
+    public void userSort() {
         utils.printLine(USER_SORT_VIEW);
         String num = utils.readLine();
         switch (num) {
@@ -25,6 +25,9 @@ public class UserSortView extends BaseClassView {
                 userSortController.sortByPatronymic();
             case "4":
                 userSortController.sortByBirthDay();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
     }
 }

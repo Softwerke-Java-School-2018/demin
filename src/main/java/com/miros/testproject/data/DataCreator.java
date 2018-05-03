@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataCreator {
-    private List<Device> deviceDAO = DeviceDAO.getInstance().getInstanceList();
+    private List<Device> deviceDAO = DeviceDAO.getInstance().getDeviceList();
     private List<User> userDAO = UserDAO.getInstance().getInstanceList();
     private List<UserActivity> userActivityDAO = UserActivityDAO.getInstance().getInstanceList();
 

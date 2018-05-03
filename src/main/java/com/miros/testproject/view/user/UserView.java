@@ -19,6 +19,9 @@ public class UserView extends BaseClassView {
                 deleteReader();
             case "3":
                 updateReader();
+            default:
+                utils.printLine("It's Wrong");
+                waitForEnter();
         }
     }
     private void createReader() {
