@@ -1,14 +1,15 @@
 package com.miros.testproject.controller.user;
 
-import com.miros.testproject.controller.BaseController;
+import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.service.UserService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class UserController extends BaseController {
+public class UserController extends BaseClassController {
     private UserService userService = new UserService();
+
     /**
      * Create new user
      *
@@ -29,6 +30,7 @@ public class UserController extends BaseController {
             waitForEnter();
         }
     }
+
     public void delete(int id) {
         try {
             User user = userService.find(id);
@@ -41,6 +43,7 @@ public class UserController extends BaseController {
         }
         waitForEnter();
     }
+
     public void update(int id, String name, String surname, String patronymic, String birthDay) {
         try {
             User user = userService.find(id);

@@ -1,9 +1,9 @@
 package com.miros.testproject.view.user;
 
 import com.miros.testproject.controller.user.UserController;
-import com.miros.testproject.view.BaseView;
+import com.miros.testproject.view.BaseClassView;
 
-public class UserView extends BaseView {
+public class UserView extends BaseClassView {
     private UserController userController = new UserController();
     private static final String USER_VIEW = "Enter the command number:\n" +
             "1 - user create\n" +

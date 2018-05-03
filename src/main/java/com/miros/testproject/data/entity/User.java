@@ -23,7 +23,7 @@ public class User {
         this.birthDay = birthDay;
     }
 
-    public User getUser(){
+    public User getUser() {
         return this;
     }
 }

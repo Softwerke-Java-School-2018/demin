@@ -1,50 +1,57 @@
 package com.miros.testproject.controller.user;
 
-import com.miros.testproject.controller.BaseController;
-import com.miros.testproject.controller.comparators.UserNameComparator;
-import com.miros.testproject.controller.comparators.UserSurnameComparator;
+import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.service.UserService;
+
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserFindController extends BaseController {
+
+public class UserFindController extends BaseClassController {
     private UserService userService = new UserService();
-    public User idFind(Integer id) {
-        return userService.find(id);
+    private List<User> tempUserDAO = tempDataService.getTempDAOUserList();
+    private List<User> userList;
+
+    public void findId(Integer id) {
+        utils.printLine(userService.find(id));
+        waitForEnter();
     }
+
     public void findName(String name) {
-        userService
+        userList = userService
                 .findAll()
                 .filter(s -> s.getName().equalsIgnoreCase(name))
-                .forEach(e -> utils.printLine(e));
-        waitForEnter();
+                .collect(Collectors.toList());
+        userList
+                .forEach(utils::printLine);
+        tempUserDAO.clear();
+        tempUserDAO.addAll(userList);
+        utils.sortFunc(userFindController);
     }
+
     public void findBirthDay(String birthDay) {
         localDate = LocalDate.parse(birthDay, formatter);
-        userService.findAll()
-                .filter(s -> s.getBirthDay().equals(localDate))
-                .forEach(e->utils.printLine(e));
-        waitForEnter();
-    }
-    public void showAll() {
-        userService
+        userList = userService
                 .findAll()
-                .forEach(e->utils.printLine(e));
-        waitForEnter();
+                .filter(s -> s.getBirthDay().equals(localDate))
+                .collect(Collectors.toList());
+        userList
+                .forEach(utils::printLine);
+        tempUserDAO.clear();
+        tempUserDAO.addAll(userList);
+        utils.sortFunc(userFindController);
     }
-    public void nameSurnameSort(){
-       List<User> userList = userService
+
+    public void showAll() {
+        userList = userService
                 .findAll()
                 .collect(Collectors.toList());
-        Comparator comparator = new UserNameComparator()
-                .thenComparing(new UserSurnameComparator());
-        Collections.sort(userList, comparator);
         userList
-                .forEach(s->utils.printLine(s));
-        waitForEnter();
+                .forEach(utils::printLine);
+        tempUserDAO.clear();
+        tempUserDAO.addAll(userList);
+        utils.sortFunc(userFindController);
     }
 }

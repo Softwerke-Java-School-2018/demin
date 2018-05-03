@@ -16,6 +16,7 @@ public class UserService {
     public User find(int id) {
         return userDAO.get(id);
     }
+
     public User delete(int id){
         return userDAO.remove(id);
     }

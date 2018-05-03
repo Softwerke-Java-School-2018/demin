@@ -1,69 +1,86 @@
 package com.miros.testproject.controller.activity;
 
-import com.miros.testproject.controller.BaseController;
+import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.entity.UserActivity;
 import com.miros.testproject.service.UserActivityService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.List;
 
-public class UserActivityFindController extends BaseController {
+public class UserActivityFindController extends BaseClassController {
     private UserActivityService userActivityService = new UserActivityService();
-    /**
-     * Name find
-     *
-     * @param userName
-     */
-    public void findUserName(String userName) {
-        userActivityService
+    private List<UserActivity> tempUserActivityDAO = tempDataService.getTempDAOUserActivityList();
+    private List<UserActivity> userActivityList;
+
+    public void findByUser(String userName) {
+        userActivityList = userActivityService
                 .findAll()
                 .filter(s -> s.getUser()
                         .getName()
                         .equalsIgnoreCase(userName))
-                .forEach(e -> utils.printLine(e));
-        waitForEnter();
+                .collect(Collectors.toList());
+        userActivityList
+                .forEach(s -> utils.printLine(s));
+        tempUserActivityDAO.clear();
+        tempUserActivityDAO.addAll(userActivityList);
+        utils.sortFunc(userActivityFindController);
     }
+
     /**
      * @param model
      */
-    public void find_UserActivity_By_DeviceModel(String model) {
-        List<UserActivity> userActivityList = userActivityService
+    public void find_By_Device_Model(String model) {
+        userActivityList = userActivityService
                 .findAll()
-                .map(UserActivity::getUserActivity)
                 .collect(Collectors.toList());
+        List<UserActivity> tempList = new ArrayList<>();
         int count = 0;
         for (UserActivity userActivity : userActivityList) {
             for (Device device : userActivity.getDeviceList()) {
                 if (device.getModel().equalsIgnoreCase(model) && count == 0) {
                     utils.printLine(userActivity);
+                    tempList.add(userActivity);
                     count++;
                 }
             }
             count = 0;
         }
-        waitForEnter();
+        tempUserActivityDAO.clear();
+        tempUserActivityDAO.addAll(userActivityList);
+        utils.sortFunc(userActivityFindController);
     }
+
     /**
      * @param userActivityId
      */
-    public void userActivityIdFind(int userActivityId) {
+    public void findId(int userActivityId) {
         try {
-            UserActivity userActivity;
-            userActivity = userActivityService.find(userActivityId);
-            utils.printLine(userActivity);
+            utils.printLine(userActivityService.find(userActivityId));
             waitForEnter();
         } catch (IndexOutOfBoundsException e) {
             utils.printLine(e.getMessage());
-            waitForEnter();
         }
+        tempUserActivityDAO.clear();
+        tempUserActivityDAO.addAll(userActivityList);
+        utils.sortFunc(userActivityFindController);
     }
+
     /**
      * @param date
      */
     public void localDateFind(String date) {
         localDate = LocalDate.parse(date, formatter);
-        waitForEnter();
+        userActivityList = userActivityService
+                .findAll()
+                .filter(s -> s.getLocalDate().equals(localDate))
+                .collect(Collectors.toList());
+        userActivityList
+                .forEach(s -> utils.printLine(s));
+        tempUserActivityDAO.clear();
+        tempUserActivityDAO.addAll(userActivityList);
+        utils.sortFunc(userActivityFindController);
     }
 }

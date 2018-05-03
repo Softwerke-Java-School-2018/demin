@@ -1,17 +1,14 @@
 package com.miros.testproject.controller.device;
 
-import com.miros.testproject.Utils;
-import com.miros.testproject.controller.BaseController;
-import com.miros.testproject.data.DAO.DeviceDAO;
+import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
 import com.miros.testproject.service.DeviceService;
 
-import javax.rmi.CORBA.Util;
+public class DeviceController extends BaseClassController {
+    private DeviceService deviceService = new DeviceService();
 
-public class DeviceController extends BaseController {
-    private  DeviceService deviceService = new DeviceService();
     public void create(String type, String color, String model) {
         DeviceType devType = DeviceType.getTypeByString(type);
         DeviceColor devColor = DeviceColor.getColorByString(color);
@@ -27,6 +24,7 @@ public class DeviceController extends BaseController {
         utils.printLine("Device created");
         waitForEnter();
     }
+
     public void delete(int id) {
         try {
             deviceService.delete(id);
@@ -37,6 +35,7 @@ public class DeviceController extends BaseController {
             waitForEnter();
         }
     }
+
     public void update(int id, String type, String color, String model) {
         try {
             Device device = deviceService.find(id);
@@ -68,9 +67,7 @@ public class DeviceController extends BaseController {
         utils.printLine("Device updated!");
         waitForEnter();
     }
-    public boolean exist(int id){
-        return deviceService.exist(id);
-    }
+
 }
 
 

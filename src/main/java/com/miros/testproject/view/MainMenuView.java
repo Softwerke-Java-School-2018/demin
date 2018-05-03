@@ -1,29 +1,31 @@
 package com.miros.testproject.view;
 
-import com.miros.testproject.Base;
+
 import com.miros.testproject.view.activity.UserActivityView;
 import com.miros.testproject.view.device.DeviceView;
 import com.miros.testproject.view.user.UserView;
+import lombok.Data;
 
-/**
- * Main View
- */
-public class MainView extends Base {
+
+@Data
+public class MainMenuView extends BaseClassView {
     private UserView userView;
     private DeviceView deviceView;
     private UserActivityView userActivityView;
     private FindView findView;
+    private BaseSort baseSort;
     private final String BASE_VIEW = "Enter the section number: \n" +
             "1 - user management \n" +
             "2 - device management \n" +
             "3 - managing the history of purchases \n" +
             "4 - search \n";
 
-    public MainView() {
+    public MainMenuView() {
         this.userView = new UserView();
         this.deviceView = new DeviceView();
         this.userActivityView = new UserActivityView();
         this.findView = new FindView();
+        this.baseSort = new BaseSort();
     }
     public void baseMenu() {
         utils.printLine(BASE_VIEW);
@@ -39,16 +41,4 @@ public class MainView extends Base {
                     findView.findMenu();
             }
         }
-    public DeviceView getDeviceView() {
-        return deviceView;
-    }
-    public UserView getUserView() {
-        return userView;
-    }
-    public UserActivityView getUserActivityView() {
-        return userActivityView;
-    }
-    public FindView getFindView() {
-        return findView;
-    }
 }

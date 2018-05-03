@@ -1,12 +1,12 @@
 package com.miros.testproject.view.device;
 
 import com.miros.testproject.controller.device.DeviceController;
-import com.miros.testproject.view.BaseView;
+import com.miros.testproject.view.BaseClassView;
 
 /**
  * View для управления устройствами
  */
-public class DeviceView extends BaseView {
+public class DeviceView extends BaseClassView {
     private DeviceController deviceController = new DeviceController();
     private static final String DEVICE_VIEW = "Enter the command number:\n" +
             "1 - device create\n" +

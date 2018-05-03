@@ -7,10 +7,13 @@ import java.util.*;
 
 public class UserActivityDAO {
     private static UserActivityDAO userActivityDAO = new UserActivityDAO();
+
     private List<UserActivity> userActivityList = new ArrayList();
+
     public static UserActivityDAO getInstance() {
         return userActivityDAO;
     }
+
     public List<UserActivity> getInstanceList() {
         return userActivityList;
     }

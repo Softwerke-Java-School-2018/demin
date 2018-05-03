@@ -1,15 +1,18 @@
 package com.miros.testproject.view.device;
 
 import com.miros.testproject.controller.device.DeviceFindController;
-import com.miros.testproject.view.BaseView;
+import com.miros.testproject.view.BaseClassView;
+import lombok.Data;
 
-public class DeviceFindView extends BaseView {
+@Data
+public class DeviceFindView extends BaseClassView {
     private DeviceFindController deviceFindController = new DeviceFindController();
     private final String DEVICE_FIND_VIEW = "Choose which parameter will be searched\n" +
             "1 - id\n" +
             "2 - Type\n" +
             "3 - Color\n" +
-            "4 - Show all devices";
+            "4 - Model\n" +
+            "5 - Show all devices";
     public void deviceFinder() {
         utils.printLine(DEVICE_FIND_VIEW);
         String num = utils.readLine();
@@ -27,6 +30,10 @@ public class DeviceFindView extends BaseView {
                 String color = utils.readLine();
                 deviceFindController.findDeviceColor(color);
             case "4":
+                utils.printLine("Enter model");
+                String model = utils.readLine();
+                deviceFindController.findModel(model);
+            case "5":
                 deviceFindController.showAll();
         }
     }

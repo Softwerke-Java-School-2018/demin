@@ -1,59 +1,80 @@
 package com.miros.testproject.controller.device;
 
-import com.miros.testproject.Utils;
-import com.miros.testproject.controller.BaseController;
-import com.miros.testproject.data.DAO.DeviceDAO;
+import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
 import com.miros.testproject.service.DeviceService;
 
-import javax.rmi.CORBA.Util;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class DeviceFindController extends BaseController {
+public class DeviceFindController extends BaseClassController {
     private DeviceService deviceService = new DeviceService();
-    public Device findId(Integer id) {
+    private List<Device> temDeviceDAO = tempDataService.getTempDAODeviceList();
+    private List<Device> deviceList;
+
+    public void findId(Integer id) {
         try {
-            return deviceService.find(id);
+            utils.printLine(deviceService.find(id));
+            waitForEnter();
         } catch (IndexOutOfBoundsException e) {
             utils.printLine(e.getMessage());
             waitForEnter();
-            return null;
         }
     }
+
     public void findDeviceColor(String color) {
         if (!DeviceColor.getColorByString(color).equals(DeviceColor.NONE)) {
-            deviceService
+            deviceList = deviceService
                     .findAll()
                     .filter(s -> s.getDeviceColor()
                             .name()
                             .equalsIgnoreCase(color))
-                    .forEach(e -> utils.printLine(e));
+                    .collect(Collectors.toList());
+            deviceList.forEach(s -> utils.printLine(s));
         }
-        waitForEnter();
+        temDeviceDAO.clear();
+        temDeviceDAO.addAll(deviceList);
+        utils.sortFunc(deviceFindController);
+
     }
+
     public void findModel(String model) {
-        deviceService
+        deviceList = deviceService
                 .findAll()
                 .filter(s -> s.getModel().equalsIgnoreCase(model))
-                .forEach(e -> utils.printLine(e));
+                .collect(Collectors.toList());
+        deviceList.forEach(s -> utils.printLine(s));
+        temDeviceDAO.clear();
+        temDeviceDAO.addAll(deviceList);
+        utils.sortFunc(deviceFindController);
     }
+
     public void findDeviceType(String type) {
         DeviceType deviceType = DeviceType.getTypeByString(type);
-        if(!deviceType.equals(DeviceType.NONE)){
-            deviceService
+        if (!deviceType.equals(DeviceType.NONE)) {
+            deviceList = deviceService
                     .findAll()
                     .filter(s -> s.getDeviceType()
                             .name()
                             .equalsIgnoreCase(type))
-                    .forEach(e -> utils.printLine(e));
+                    .collect(Collectors.toList());
+            deviceList.forEach(s -> utils.printLine(s));
         }
-        waitForEnter();
+        temDeviceDAO.clear();
+        temDeviceDAO.addAll(deviceList);
+        utils.sortFunc(deviceFindController);
     }
+
     public void showAll() {
-        deviceService
+        deviceList = deviceService
                 .findAll()
-                .forEach(e->utils.printLine(e));
-        waitForEnter();
+                .collect(Collectors.toList());
+        deviceList
+                .forEach(utils::printLine);
+        temDeviceDAO.clear();
+        temDeviceDAO.addAll(deviceList);
+        utils.sortFunc(deviceFindController);
     }
 }

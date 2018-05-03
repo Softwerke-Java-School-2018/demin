@@ -14,7 +14,7 @@ public class UserActivityService {
         return userActivityDAO.add(userActivity);
     }
 
-    public UserActivity find(int id) throws IndexOutOfBoundsException{
+    public UserActivity find(int id) {
         return userActivityDAO.get(id);
     }
 

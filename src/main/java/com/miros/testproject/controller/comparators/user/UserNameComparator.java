@@ -1,4 +1,4 @@
-package com.miros.testproject.controller.comparators;
+package com.miros.testproject.controller.comparators.user;
 
 import com.miros.testproject.data.entity.User;
 

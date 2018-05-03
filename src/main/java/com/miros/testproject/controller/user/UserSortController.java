@@ -1,29 +1,46 @@
 package com.miros.testproject.controller.user;
 
-import com.miros.testproject.controller.BaseController;
-import com.miros.testproject.controller.comparators.UserBirthDayComparator;
-import com.miros.testproject.controller.comparators.UserNameComparator;
-import com.miros.testproject.controller.comparators.UserSurnameComparator;
+import com.miros.testproject.controller.BaseClassController;
+import com.miros.testproject.controller.comparators.user.UserBirthDayComparator;
+import com.miros.testproject.controller.comparators.user.UserNameComparator;
+import com.miros.testproject.controller.comparators.user.UserPatronymicComparator;
+import com.miros.testproject.controller.comparators.user.UserSurnameComparator;
 import com.miros.testproject.data.entity.User;
-import com.miros.testproject.service.UserService;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class UserSortController extends BaseController {
+public class UserSortController extends BaseClassController {
+    private List<User> tempUserDAO = tempDataService.getTempDAOUserList();
 
-    private  UserService userService = new UserService();
+    public void sortByName() {
+        comparator = new UserNameComparator();
+        Collections.sort(tempUserDAO, comparator);
+        tempUserDAO
+                .forEach(utils::printLine);
+        utils.sortFunc(userFindController);
+    }
+
+    public void sortBySurname() {
+        comparator = new UserSurnameComparator();
+        Collections.sort(tempUserDAO, comparator);
+        tempUserDAO
+                .forEach(s -> utils.printLine(s));
+        utils.sortFunc(userFindController);
+    }
+
+    public void sortByPatronymic() {
+        comparator = new UserPatronymicComparator();
+        Collections.sort(tempUserDAO, comparator);
+        tempUserDAO
+                .forEach(s -> utils.printLine(s));
+        utils.sortFunc(userFindController);
+    }
 
     public void sortByBirthDay() {
-
-        List<User> userList;
-
-        userList = userService
-                .findAll()
-                .collect(Collectors.toList());
-
-        userService
-                .findAll();
-        waitForEnter();
+        comparator = new UserBirthDayComparator();
+        Collections.sort(tempUserDAO, comparator);
+        tempUserDAO
+                .forEach(s -> utils.printLine(s));
+        utils.sortFunc(userFindController);
     }
 }

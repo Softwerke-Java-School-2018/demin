@@ -1,6 +1,6 @@
 package com.miros.testproject.controller.activity;
 
-import com.miros.testproject.controller.BaseController;
+import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.data.entity.UserActivity;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 
-public class UserActivityController extends BaseController {
+public class UserActivityController extends BaseClassController {
     private UserService userService = new UserService();
     private DeviceService deviceService = new DeviceService();
     private UserActivityService userActivityService = new UserActivityService();

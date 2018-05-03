@@ -1,7 +1,7 @@
 package com.miros.testproject.view.activity;
 
 import com.miros.testproject.controller.activity.UserActivityController;
-import com.miros.testproject.view.BaseView;
+import com.miros.testproject.view.BaseClassView;
 
 
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UserActivityView extends BaseView {
+public class UserActivityView extends BaseClassView {
     private UserActivityController userActivityController = new UserActivityController();
     private final String USER_ACTIVITY_VIEW = "Enter the section number:\n" +
             "1 - create a purchase entry\n" +
