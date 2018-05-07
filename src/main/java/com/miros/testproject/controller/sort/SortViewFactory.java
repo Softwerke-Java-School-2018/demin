@@ -1,4 +1,4 @@
-package com.miros.testproject.util;
+package com.miros.testproject.controller.sort;
 
 import com.miros.testproject.BaseClass;
 import com.miros.testproject.Main;
@@ -6,33 +6,28 @@ import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.controller.activity.UserActivityFindController;
 import com.miros.testproject.controller.device.DeviceFindController;
 import com.miros.testproject.controller.user.UserFindController;
-import com.miros.testproject.view.BaseSort;
+import com.miros.testproject.view.SortView;
+import com.miros.testproject.view.activity.UserActivitySortView;
+import com.miros.testproject.view.device.DeviceSortView;
+import com.miros.testproject.view.user.UserSortView;
 
-public class Sort extends BaseClass {
-    public boolean sortFunction(BaseClassController baseClassController) {
+public class SortViewFactory extends BaseClass {
+    public SortView sortFunction(BaseClassController baseClassController) {
         String str = utils.readLine();
         if ("".equals(str)) {
             Main.getMainMenuView().baseMenu();
         }
         if ("s".equals(str)) {
-            BaseSort baseSort = Main.getMainMenuView().getBaseSort();
             if (baseClassController instanceof UserFindController) {
-                baseSort.getUserSortView().userSort();
-                return true;
+                return new UserSortView();
             }
             if (baseClassController instanceof DeviceFindController) {
-                baseSort.getDeviceSortView().deviceSort();
-                return true;
+                return new DeviceSortView();
             }
             if (baseClassController instanceof UserActivityFindController) {
-                baseSort.getUserActivitySortView().userActivitySort();
-                return true;
+                return new UserActivitySortView();
             }
-        } else {
-            waitForEnter();
         }
-        return false;
+        return null;
     }
 }
-
-

@@ -1,6 +1,7 @@
 package com.miros.testproject.data.DAO;
 
 import com.miros.testproject.data.entity.Device;
+
 import java.util.*;
 
 public class DeviceDAO {
@@ -8,13 +9,16 @@ public class DeviceDAO {
 
     private List<Device> deviceList = new ArrayList();
 
-    public static DeviceDAO getInstance() {
-        return deviceDAO;
+    public static DeviceDAO getInstance(){
+            return deviceDAO;
     }
 
-    public List<Device> getDeviceList() {
+    public List<Device> getDeviceList() throws IllegalArgumentException {
         return deviceList;
     }
 }
+
+
+
 
 

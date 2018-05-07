@@ -2,10 +2,11 @@ package com.miros.testproject.view.user;
 
 import com.miros.testproject.controller.user.UserSortController;
 import com.miros.testproject.view.BaseClassView;
+import com.miros.testproject.view.SortView;
 import lombok.Data;
 
 @Data
-public class UserSortView extends BaseClassView {
+public class UserSortView extends BaseClassView implements SortView {
     private UserSortController userSortController = new UserSortController();
     private final String USER_SORT_VIEW = "Choose which parameter use for sort\n" +
             "1 - Name\n" +
@@ -13,7 +14,7 @@ public class UserSortView extends BaseClassView {
             "3 - Patronymic\n" +
             "4 - BirthDay\n";
 
-    public void userSort() {
+    public void sort() {
         utils.printLine(USER_SORT_VIEW);
         String num = utils.readLine();
         switch (num) {

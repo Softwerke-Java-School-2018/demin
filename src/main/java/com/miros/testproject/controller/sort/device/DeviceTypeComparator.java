@@ -1,4 +1,4 @@
-package com.miros.testproject.controller.comparators.device;
+package com.miros.testproject.controller.sort.device;
 
 import com.miros.testproject.data.entity.Device;
 

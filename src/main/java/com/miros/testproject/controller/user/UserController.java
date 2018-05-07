@@ -2,11 +2,15 @@ package com.miros.testproject.controller.user;
 
 import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.User;
+import com.miros.testproject.exception.ParseException;
+import com.miros.testproject.exception.RuntimeEx;
 import com.miros.testproject.service.UserService;
+import lombok.extern.log4j.Log4j2;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+@Log4j2
 public class UserController extends BaseClassController {
     private UserService userService = new UserService();
 
@@ -25,11 +29,19 @@ public class UserController extends BaseClassController {
             userService.save(new User(name, surname, patronymic, localDate));
             utils.printLine("User created");
             waitForEnter();
-        } catch (DateTimeParseException e) {
+        } catch (ParseException e) {
             utils.printLine("Invalid Date format, try again");
+            log.info("User create: Invalid date format");
             waitForEnter();
+        } catch (RuntimeEx e) {
+            log.info("User create: Runtime exc");
         }
     }
+
+    /**
+     *
+     * @param id
+     */
 
     public void delete(int id) {
         try {
@@ -43,6 +55,15 @@ public class UserController extends BaseClassController {
         }
         waitForEnter();
     }
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param surname
+     * @param patronymic
+     * @param birthDay
+     */
 
     public void update(int id, String name, String surname, String patronymic, String birthDay) {
         try {

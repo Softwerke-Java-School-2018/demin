@@ -1,4 +1,4 @@
-package com.miros.testproject.controller.comparators.useractivity;
+package com.miros.testproject.controller.sort.useractivity;
 
 import com.miros.testproject.data.entity.UserActivity;
 

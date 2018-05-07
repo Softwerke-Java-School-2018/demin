@@ -13,7 +13,6 @@ public class MainMenuView extends BaseClassView {
     private DeviceView deviceView;
     private UserActivityView userActivityView;
     private FindView findView;
-    private BaseSort baseSort;
     private final String BASE_VIEW = "Enter the section number: \n" +
             "1 - user management \n" +
             "2 - device management \n" +
@@ -25,7 +24,6 @@ public class MainMenuView extends BaseClassView {
         this.deviceView = new DeviceView();
         this.userActivityView = new UserActivityView();
         this.findView = new FindView();
-        this.baseSort = new BaseSort();
     }
 
     public void baseMenu() {

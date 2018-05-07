@@ -27,17 +27,11 @@ public class UserActivityView extends BaseClassView {
                 waitForEnter();
         }
     }
-    /*
-    Доработать метод с несколькими покупками где можно выбрать count купленных устройств
-    изменить контроллер для передачи коллекции с дейвайсами и кол-вом
-     */
+
     void createUserActivityView() {
         boolean flug = true;
-        int userId=0;
-        int deviceId=0;
-        /*
-        Device id, device count;
-         */
+        int userId;
+        int deviceId;
         Map<Integer, Integer> deviceMap = new HashMap();
         utils.printLine("Enter the Id of the user who makes the purchase");
         userId = Integer.parseInt(utils.readLine());

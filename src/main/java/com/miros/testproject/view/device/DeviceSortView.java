@@ -3,17 +3,18 @@ package com.miros.testproject.view.device;
 import com.miros.testproject.controller.device.DeviceSortController;
 import com.miros.testproject.view.BaseClassView;
 
+import com.miros.testproject.view.SortView;
 import lombok.Data;
 
 @Data
-public class DeviceSortView extends BaseClassView {
+public class DeviceSortView extends BaseClassView implements SortView {
     private DeviceSortController deviceSortController = new DeviceSortController();
     private final String DEVICE_SORT_VIEW = "Choose which parameter use for sort\n" +
             "1 - Model\n" +
             "2 - Type\n" +
             "3 - Color\n";
 
-    public void deviceSort() {
+    public void sort() {
         utils.printLine(DEVICE_SORT_VIEW);
         String num = utils.readLine();
         switch (num) {

@@ -1,12 +1,9 @@
-package com.miros.testproject.controller.comparators.user;
+package com.miros.testproject.controller.sort.user;
 
 import com.miros.testproject.data.entity.User;
 
 import java.util.Comparator;
 
-/**
- * КОМПАРАТОР НЕДОДЕЛАН
- */
 
 public class UserNameComparator implements Comparator<User> {
     @Override

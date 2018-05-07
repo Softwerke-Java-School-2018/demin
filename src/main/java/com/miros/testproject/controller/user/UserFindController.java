@@ -14,11 +14,19 @@ public class UserFindController extends BaseClassController {
     private List<User> tempUserDAO = tempDataService.getTempDAOUserList();
     private List<User> userList;
 
+    /**
+     *
+     * @param id
+     */
     public void findId(Integer id) {
         utils.printLine(userService.find(id));
         waitForEnter();
     }
 
+    /**
+     *
+     * @param name
+     */
     public void findName(String name) {
         userList = userService
                 .findAll()
@@ -31,6 +39,10 @@ public class UserFindController extends BaseClassController {
         utils.sortFunc(userFindController);
     }
 
+    /**
+     *
+     * @param birthDay
+     */
     public void findBirthDay(String birthDay) {
         localDate = LocalDate.parse(birthDay, formatter);
         userList = userService

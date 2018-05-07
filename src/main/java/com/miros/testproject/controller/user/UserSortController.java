@@ -1,10 +1,10 @@
 package com.miros.testproject.controller.user;
 
 import com.miros.testproject.controller.BaseClassController;
-import com.miros.testproject.controller.comparators.user.UserBirthDayComparator;
-import com.miros.testproject.controller.comparators.user.UserNameComparator;
-import com.miros.testproject.controller.comparators.user.UserPatronymicComparator;
-import com.miros.testproject.controller.comparators.user.UserSurnameComparator;
+import com.miros.testproject.controller.sort.user.UserBirthDayComparator;
+import com.miros.testproject.controller.sort.user.UserNameComparator;
+import com.miros.testproject.controller.sort.user.UserPatronymicComparator;
+import com.miros.testproject.controller.sort.user.UserSurnameComparator;
 import com.miros.testproject.data.entity.User;
 
 import java.util.*;

@@ -16,7 +16,7 @@ public class Device {
     private String model;
 
     public Device(DeviceType deviceType, DeviceColor deviceColor, String model) {
-        atomicInteger.incrementAndGet();
+        this.id = atomicInteger.incrementAndGet();
         this.deviceType = deviceType;
         this.deviceColor = deviceColor;
         this.model = model.toUpperCase();

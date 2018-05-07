@@ -1,8 +1,8 @@
 package com.miros.testproject.controller.activity;
 
 import com.miros.testproject.controller.BaseClassController;
-import com.miros.testproject.controller.comparators.useractivity.UserActivityDateComparator;
-import com.miros.testproject.controller.comparators.useractivity.UserActivityNameComparator;
+import com.miros.testproject.controller.sort.useractivity.UserActivityDateComparator;
+import com.miros.testproject.controller.sort.useractivity.UserActivityNameComparator;
 import com.miros.testproject.data.entity.UserActivity;
 
 import java.util.Collections;

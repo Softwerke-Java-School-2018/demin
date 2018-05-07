@@ -2,14 +2,11 @@ package com.miros.testproject.util;
 
 import com.miros.testproject.Main;
 import com.miros.testproject.controller.BaseClassController;
-import com.miros.testproject.controller.activity.UserActivityFindController;
-import com.miros.testproject.controller.device.DeviceFindController;
-import com.miros.testproject.controller.user.UserFindController;
+import com.miros.testproject.controller.sort.SortViewFactory;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.data.entity.UserActivity;
-import com.miros.testproject.view.BaseSort;
-import com.sun.org.apache.xml.internal.utils.StringBufferPool;
+import com.miros.testproject.view.SortView;
 
 import java.util.Scanner;
 
@@ -66,13 +63,13 @@ public class Utils {
         }
     }
 
-    public boolean sortFunc(BaseClassController baseClassController) {
+    public void sortFunc(BaseClassController baseClassController) {
         out("Press s to make sort or press Enter to back in Main menu");
-        Sort sort = new Sort();
-        if (sort.sortFunction(baseClassController)) {
-            return true;
+        SortViewFactory sortViewFactory = new SortViewFactory();
+        SortView sortView = sortViewFactory.sortFunction(baseClassController);
+        if(!sortView.equals(null)) {
+            sortView.sort();
         }
-        return false;
     }
 }
 
