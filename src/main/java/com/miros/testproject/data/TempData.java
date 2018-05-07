@@ -8,6 +8,11 @@ package com.miros.testproject.data;
 
         import com.miros.testproject.data.entity.UserActivity;
 
+
+/**
+ * Temporary data with all types Entity lists.
+ * It's for sort manipulations
+ */
 public class TempData {
     private static TempData tempData = new TempData();
     private List<User> tempUserList = new ArrayList();

@@ -5,15 +5,16 @@ import com.miros.testproject.data.entity.User;
 import com.miros.testproject.exception.ParseException;
 import com.miros.testproject.exception.RuntimeEx;
 import com.miros.testproject.service.UserService;
-import lombok.extern.log4j.Log4j2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-@Log4j2
+
 public class UserController extends BaseClassController {
     private UserService userService = new UserService();
-
+    private final static Logger log = LoggerFactory.getLogger(UserController.class);
     /**
      * Create new user
      *
@@ -26,7 +27,13 @@ public class UserController extends BaseClassController {
     public void create(String name, String surname, String patronymic, String birthDay) {
         try {
             localDate = LocalDate.parse(birthDay, formatter);
-            userService.save(new User(name, surname, patronymic, localDate));
+            User newUser = User.builder()
+                    .name(name)
+                    .surname(surname)
+                    .patronymic(patronymic)
+                    .birthDay(localDate)
+                    .build();
+            userService.save(newUser);
             utils.printLine("User created");
             waitForEnter();
         } catch (ParseException e) {
@@ -34,7 +41,7 @@ public class UserController extends BaseClassController {
             log.info("User create: Invalid date format");
             waitForEnter();
         } catch (RuntimeEx e) {
-            log.info("User create: Runtime exc");
+            log.info("User create: Save new user exception", e);
         }
     }
 
@@ -71,24 +78,31 @@ public class UserController extends BaseClassController {
             if (!"".equals(birthDay)) {
                 localDate = LocalDate.parse(birthDay, formatter);
                 user.setBirthDay(localDate);
+                log.info("User update: Birthday setted");
             }
             if (!"".equals(name)) {
                 user.setName(name);
+                log.info("User update: Name setted");
             }
             if (!"".equals(surname)) {
                 user.setSurname(surname);
+                log.info("User update: Surname setted");
             }
             if (!"".equals(patronymic)) {
                 user.setPatronymic(patronymic);
+                log.info("User update: Patronymic setted");
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (RuntimeEx e) {
             utils.printLine("User with " + id + " id number, doesn't exist");
+            log.info("User update: user doesn't exist", e);
             waitForEnter();
-        } catch (DateTimeParseException ex) {
+        } catch (ParseException ex) {
             utils.printLine("Invalid Date format, try again");
+            log.info("User update: Invalid date Format", ex);
             waitForEnter();
         }
         utils.printLine("User uptated!");
+        log.info("User update: user id: "+id+ " updated");
         waitForEnter();
     }
 }

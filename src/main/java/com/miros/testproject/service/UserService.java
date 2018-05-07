@@ -14,7 +14,7 @@ public class UserService {
             return userDAO.add(user);
     }
 
-    public User find(int id) {
+    public User find(int id) throws RuntimeEx {
         return userDAO.get(id);
     }
 

@@ -11,8 +11,13 @@ import com.miros.testproject.view.activity.UserActivitySortView;
 import com.miros.testproject.view.device.DeviceSortView;
 import com.miros.testproject.view.user.UserSortView;
 
+/**
+ * Fabric for creating sortViews by
+ * controllers
+ */
+
 public class SortViewFactory extends BaseClass {
-    public SortView sortFunction(BaseClassController baseClassController) {
+    public SortView getSortView(BaseClassController baseClassController) {
         String str = utils.readLine();
         if ("".equals(str)) {
             Main.getMainMenuView().baseMenu();

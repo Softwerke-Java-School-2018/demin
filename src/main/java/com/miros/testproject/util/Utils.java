@@ -63,10 +63,15 @@ public class Utils {
         }
     }
 
+
+    /**
+     * Function identify type Entity to sort
+     * @param baseClassController
+     */
     public void sortFunc(BaseClassController baseClassController) {
         out("Press s to make sort or press Enter to back in Main menu");
         SortViewFactory sortViewFactory = new SortViewFactory();
-        SortView sortView = sortViewFactory.sortFunction(baseClassController);
+        SortView sortView = sortViewFactory.getSortView(baseClassController);
         if(!sortView.equals(null)) {
             sortView.sort();
         }

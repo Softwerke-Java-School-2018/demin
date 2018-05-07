@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
+@Builder
 public class UserActivity {
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
     private int id;

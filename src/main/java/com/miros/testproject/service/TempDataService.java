@@ -6,6 +6,10 @@ import com.miros.testproject.data.entity.User;
 import com.miros.testproject.data.entity.UserActivity;
 import java.util.List;
 
+
+/**
+ *
+ */
 public class TempDataService {
     private  List<User> tempDAOUserList = TempData.getInstance().getTempUserList();
     private  List<Device> tempDAODeviceList = TempData.getInstance().getTempDeviceList();

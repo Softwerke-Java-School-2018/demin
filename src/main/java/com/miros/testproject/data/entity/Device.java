@@ -2,12 +2,14 @@ package com.miros.testproject.data.entity;
 
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 @ToString
+@Builder
 public class Device {
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
     private int id;
