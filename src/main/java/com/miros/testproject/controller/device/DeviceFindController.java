@@ -4,7 +4,10 @@ import com.miros.testproject.controller.BaseClassController;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
+import com.miros.testproject.exception.RuntimeEx;
 import com.miros.testproject.service.DeviceService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +16,7 @@ public class DeviceFindController extends BaseClassController {
     private DeviceService deviceService = new DeviceService();
     private List<Device> temDeviceDAO = tempDataService.getTempDAODeviceList();
     private List<Device> deviceList;
+    private final static Logger log = LoggerFactory.getLogger(DeviceFindController.class);
 
     public void findId(Integer id) {
         try {
@@ -25,14 +29,21 @@ public class DeviceFindController extends BaseClassController {
     }
 
     public void findDeviceColor(String color) {
-        if (!DeviceColor.getColorByString(color).equals(DeviceColor.NONE)) {
-            deviceList = deviceService
-                    .findAll()
-                    .filter(s -> s.getDeviceColor()
-                            .name()
-                            .equalsIgnoreCase(color))
-                    .collect(Collectors.toList());
-            deviceList.forEach(s -> utils.printLine(s));
+        DeviceColor deviceColor = DeviceColor.getColorByString(color);
+
+        if (!deviceColor.equals(DeviceColor.NONE)) {
+            try {
+                deviceList = deviceService
+                        .findAll()
+                        .filter(s -> s.getDeviceColor()
+                                .name()
+                                .equalsIgnoreCase(color))
+                        .collect(Collectors.toList());
+                deviceList.forEach(s -> utils.printLine(s));
+            } catch (RuntimeEx e) {
+                log.info("Device find: err by trying find color: " + deviceColor, e);
+                waitForEnter();
+            }
         }
         temDeviceDAO.clear();
         temDeviceDAO.addAll(deviceList);

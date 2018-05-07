@@ -9,12 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 
 public class UserController extends BaseClassController {
     private UserService userService = new UserService();
     private final static Logger log = LoggerFactory.getLogger(UserController.class);
+
     /**
      * Create new user
      *
@@ -27,14 +26,10 @@ public class UserController extends BaseClassController {
     public void create(String name, String surname, String patronymic, String birthDay) {
         try {
             localDate = LocalDate.parse(birthDay, formatter);
-            User newUser = User.builder()
-                    .name(name)
-                    .surname(surname)
-                    .patronymic(patronymic)
-                    .birthDay(localDate)
-                    .build();
+            User newUser = new User(name, surname, patronymic, localDate);
             userService.save(newUser);
             utils.printLine("User created");
+            log.info("User create: Create new user with id: " + newUser.getId());
             waitForEnter();
         } catch (ParseException e) {
             utils.printLine("Invalid Date format, try again");
@@ -46,25 +41,25 @@ public class UserController extends BaseClassController {
     }
 
     /**
-     *
      * @param id
      */
 
     public void delete(int id) {
         try {
             User user = userService.find(id);
-            if (userService.delete(user)) {
-                utils.printLine("User deleted");
-            }
-        } catch (IndexOutOfBoundsException e) {
+            userService.delete(user);
+            log.info("User delete id: "+id);
+            utils.printLine("User deleted");
+
+        } catch (RuntimeEx e) {
             utils.printLine("User with " + id + " id number, doesn't exist");
+            log.info("Runtime :", e);
             waitForEnter();
         }
         waitForEnter();
     }
 
     /**
-     *
      * @param id
      * @param name
      * @param surname
@@ -102,7 +97,7 @@ public class UserController extends BaseClassController {
             waitForEnter();
         }
         utils.printLine("User uptated!");
-        log.info("User update: user id: "+id+ " updated");
+        log.info("User update: user id: " + id + " updated");
         waitForEnter();
     }
 }

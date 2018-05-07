@@ -10,7 +10,6 @@ import lombok.ToString;
 
 @Data
 @ToString
-@Builder
 public class UserActivity {
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
     private int id;

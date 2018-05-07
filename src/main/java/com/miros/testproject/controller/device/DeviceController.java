@@ -29,12 +29,11 @@ public class DeviceController extends BaseClassController {
             waitForEnter();
         }
         try {
-            Device device = Device.builder()
-                    .deviceType(devType)
-                    .deviceColor(devColor)
-                    .build();
+            Device device = new Device(devType, devColor, model);
             deviceService.save(device);
+            log.info("Device create: Device created"+device.getId());
             utils.printLine("Device created");
+            waitForEnter();
         } catch (RuntimeEx e) {
             log.info("Device create Runtime err", e);
             waitForEnter();
@@ -51,7 +50,7 @@ public class DeviceController extends BaseClassController {
             log.info("Device delete: device deleted id: " + id);
             waitForEnter();
         } catch (RuntimeEx e) {
-            log.info("Device delete: not existing Id", e);
+            log.info("Device delete: not existing Id");
             utils.printLine("Device with " + id + " id number, doesn't exist");
             waitForEnter();
         }
@@ -74,10 +73,7 @@ public class DeviceController extends BaseClassController {
                     waitForEnter();
                 }
             }
-            device.builder()
-                    .deviceType(deviceType)
-                    .deviceColor(deviceColor)
-                    .build();
+            device.setDeviceType(deviceType);
             device.setDeviceColor(deviceColor);
             if (!model.equals("")) {
                 deviceService

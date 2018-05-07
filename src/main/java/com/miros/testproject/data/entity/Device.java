@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 @ToString
-@Builder
 public class Device {
     private static AtomicInteger atomicInteger = new AtomicInteger(0);
     private int id;

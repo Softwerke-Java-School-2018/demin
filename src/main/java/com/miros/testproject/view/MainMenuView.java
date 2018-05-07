@@ -38,6 +38,8 @@ public class MainMenuView extends BaseClassView {
                 userActivityView.userActivityMenu();
             case "4":
                 findView.findMenu();
+            case "":
+                System.exit(0);
             default:
                 utils.printLine("It's Wrong");
                 waitForEnter();
