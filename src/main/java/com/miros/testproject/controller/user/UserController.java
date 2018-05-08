@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class UserController extends BaseClassController {
     private UserService userService = new UserService();
@@ -23,20 +24,23 @@ public class UserController extends BaseClassController {
      * @param birthDay
      * @return
      */
-    public void create(String name, String surname, String patronymic, String birthDay) {
+    public Optional<User> create(String name, String surname, String patronymic, String birthDay) {
         try {
-            localDate = LocalDate.parse(birthDay, formatter);
+            localDate = dateParser(birthDay);
             User newUser = new User(name, surname, patronymic, localDate);
             userService.save(newUser);
             utils.printLine("User created");
             log.info("User create: Create new user with id: " + newUser.getId());
             waitForEnter();
+            return Optional.of(newUser);
         } catch (ParseException e) {
             utils.printLine("Invalid Date format, try again");
             log.info("User create: Invalid date format");
             waitForEnter();
         } catch (RuntimeEx e) {
             log.info("User create: Save new user exception", e);
+        } finally {
+            return empty;
         }
     }
 
@@ -44,19 +48,21 @@ public class UserController extends BaseClassController {
      * @param id
      */
 
-    public void delete(int id) {
+    public Optional<User> delete(int id) {
         try {
             User user = userService.find(id);
             userService.delete(user);
-            log.info("User delete id: "+id);
+            log.info("User delete id: " + id);
             utils.printLine("User deleted");
-
+            waitForEnter();
+            return Optional.of(user);
         } catch (RuntimeEx e) {
             utils.printLine("User with " + id + " id number, doesn't exist");
             log.info("Runtime :", e);
             waitForEnter();
+        } finally {
+            return empty;
         }
-        waitForEnter();
     }
 
     /**
@@ -67,11 +73,11 @@ public class UserController extends BaseClassController {
      * @param birthDay
      */
 
-    public void update(int id, String name, String surname, String patronymic, String birthDay) {
+    public Optional<User> update(int id, String name, String surname, String patronymic, String birthDay) {
         try {
             User user = userService.find(id);
             if (!"".equals(birthDay)) {
-                localDate = LocalDate.parse(birthDay, formatter);
+                dateParser(birthDay);
                 user.setBirthDay(localDate);
                 log.info("User update: Birthday setted");
             }
@@ -87,6 +93,9 @@ public class UserController extends BaseClassController {
                 user.setPatronymic(patronymic);
                 log.info("User update: Patronymic setted");
             }
+            utils.printLine("User uptated!");
+            log.info("User update: user id: " + id + " updated");
+            waitForEnter();
         } catch (RuntimeEx e) {
             utils.printLine("User with " + id + " id number, doesn't exist");
             log.info("User update: user doesn't exist", e);
@@ -95,10 +104,9 @@ public class UserController extends BaseClassController {
             utils.printLine("Invalid Date format, try again");
             log.info("User update: Invalid date Format", ex);
             waitForEnter();
+        } finally {
+            return empty;
         }
-        utils.printLine("User uptated!");
-        log.info("User update: user id: " + id + " updated");
-        waitForEnter();
     }
 }
 

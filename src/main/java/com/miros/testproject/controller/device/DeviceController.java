@@ -9,54 +9,61 @@ import com.miros.testproject.service.DeviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
 
 public class DeviceController extends BaseClassController {
     private DeviceService deviceService = new DeviceService();
     private final static Logger log = LoggerFactory.getLogger(DeviceController.class);
+    private volatile Device device;
 
-
-    public void create(String type, String color, String model) {
+    public Optional<Device> create(String type, String color, String model) {
         DeviceType devType = DeviceType.getTypeByString(type);
         DeviceColor devColor = DeviceColor.getColorByString(color);
         if (devColor.equals(DeviceColor.NONE)) {
-            log.info("Device create: Is not existing color " + color);
+            log.info("Device create: Doesn't exist color " + color);
             utils.printLine("This color of device, doesn't exist");
             waitForEnter();
         }
         if (devType.equals(DeviceType.NONE)) {
-            log.info("Device create: Is no existing type " + type);
+            log.info("Device create: Doesn't exist type " + type);
             utils.printLine("This type of device, doesn't exist");
             waitForEnter();
         }
         try {
-            Device device = new Device(devType, devColor, model);
+            device = new Device(devType, devColor, model);
             deviceService.save(device);
-            log.info("Device create: Device created"+device.getId());
+            log.info("Device create: Device created" + device.getId());
             utils.printLine("Device created");
             waitForEnter();
+            return Optional.of(device);
         } catch (RuntimeEx e) {
-            log.info("Device create Runtime err", e);
+            log.info("Device create: Runtime err", e);
             waitForEnter();
         } catch (Exception e) {
-            log.info("Device create Exception err", e);
+            log.info("Device create: Exception err", e);
             waitForEnter();
+        } finally {
+            return empty;
         }
     }
 
-    public void delete(int id) {
+    public Optional<Device> delete(int id) {
         try {
-            deviceService.delete(id);
+            device = deviceService.delete(id);
             utils.printLine("Device deleted");
             log.info("Device delete: device deleted id: " + id);
             waitForEnter();
+            return Optional.of(device);
         } catch (RuntimeEx e) {
             log.info("Device delete: not existing Id");
             utils.printLine("Device with " + id + " id number, doesn't exist");
             waitForEnter();
+        } finally {
+            return empty;
         }
     }
 
-    public void update(int id, String type, String color, String model) {
+    public Optional<Device> update(int id, String type, String color, String model) {
         try {
             Device device = deviceService.find(id);
             DeviceType deviceType = DeviceType.getTypeByString(type);
@@ -80,13 +87,16 @@ public class DeviceController extends BaseClassController {
                         .find(id)
                         .setModel(model);
             }
+            utils.printLine("Device updated!");
+            waitForEnter();
         } catch (RuntimeEx e) {
             log.info("Update: device doesnt exist, id: " + id, e);
             utils.printLine("Device with " + id + " id number, doesn't exist");
             waitForEnter();
+        } finally {
+            return empty;
         }
-        utils.printLine("Device updated!");
-        waitForEnter();
+
     }
 }
 

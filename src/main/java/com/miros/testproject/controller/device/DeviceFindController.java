@@ -21,8 +21,9 @@ public class DeviceFindController extends BaseClassController {
     public void findId(Integer id) {
         try {
             utils.printLine(deviceService.find(id));
+            log.info("Device find: Device with id: " + id);
             waitForEnter();
-        } catch (IndexOutOfBoundsException e) {
+        } catch (RuntimeEx e) {
             utils.printLine(e.getMessage());
             waitForEnter();
         }
@@ -39,6 +40,8 @@ public class DeviceFindController extends BaseClassController {
                                 .name()
                                 .equalsIgnoreCase(color))
                         .collect(Collectors.toList());
+                log.info("Device find: Devices with color " + deviceColor + "\n"
+                        + deviceList);
                 deviceList.forEach(s -> utils.printLine(s));
             } catch (RuntimeEx e) {
                 log.info("Device find: err by trying find color: " + deviceColor, e);

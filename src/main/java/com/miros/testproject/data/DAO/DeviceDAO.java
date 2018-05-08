@@ -13,7 +13,7 @@ public class DeviceDAO {
             return deviceDAO;
     }
 
-    public List<Device> getDeviceList() throws IllegalArgumentException {
+    public List<Device> getDeviceList() throws RuntimeException {
         return deviceList;
     }
 }

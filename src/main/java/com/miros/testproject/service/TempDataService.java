@@ -15,30 +15,6 @@ public class TempDataService {
     private  List<Device> tempDAODeviceList = TempData.getInstance().getTempDeviceList();
     private  List<UserActivity> tempDAOUserActivityList = TempData.getInstance().getTempUserActivityList();
 
-    public void clearTempUserActivityList(){
-        tempDAOUserActivityList.clear();
-    }
-
-    public void clearTempUserList(){
-        tempDAOUserList.clear();
-    }
-
-    public void clearTempDeviceList(){
-        tempDAODeviceList.clear();
-    }
-
-    public void setTempDAOUserActivityList(List<UserActivity> tempDAOUserActivityList) {
-        tempDAOUserActivityList.addAll(tempDAOUserActivityList);
-    }
-
-    public void setTempDAODeviceList(List<Device> tempDAODeviceList) {
-        tempDAODeviceList.addAll(tempDAODeviceList);
-    }
-
-    public void setTempDAOUserList(List<User> tempDAOUserList) {
-        tempDAOUserList.addAll(tempDAOUserList);
-    }
-
     public List<User> getTempDAOUserList(){
         return tempDAOUserList;
     }

@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +24,13 @@ public class UserActivityController extends BaseClassController {
     private DeviceService deviceService = new DeviceService();
     private UserActivityService userActivityService = new UserActivityService();
     private final static Logger log = LoggerFactory.getLogger(UserActivityController.class);
+    private UserActivity userActivity;
 
     //Stream?
     /*
        Map Device id, device count;
       */
-    public void create(int userId, Map<Integer, Integer> deviceMap, LocalDate localDate) {
+    public Optional<UserActivity> create(int userId, Map<Integer, Integer> deviceMap, LocalDate localDate) {
         try {
             boolean userCheck = userService.exist(userId);
             List<Device> deviceList = new ArrayList();
@@ -51,24 +53,29 @@ public class UserActivityController extends BaseClassController {
                 log.info("UserActivity create: UserActivity created id: " + userActivity.getId());
                 utils.printLine("Purchase created");
                 waitForEnter();
-
+                return Optional.of(userActivity);
             }
+            utils.printLine("User with id: " + userId + " doesn't exist");
+            waitForEnter();
         } catch (RuntimeEx e) {
             log.info(e.getMessage(), e);
+        } finally {
+            return empty;
         }
-        utils.printLine("User with id: " + userId + " doesn't exist");
-        waitForEnter();
     }
 
-    public void delete(Integer id) {
+    public Optional<UserActivity> delete(Integer id) {
         try {
-            userActivityService.delete(id);
+            userActivity = userActivityService.delete(id);
             utils.printLine("Purchase deleted");
             waitForEnter();
+            return Optional.of(userActivity);
         } catch (RuntimeEx e) {
             utils.printLine("Purchase with id" + id + " doesn't exist");
             log.info("UserActivity create: Delete UserActivity Runtime problem, id: " + id, e);
             waitForEnter();
+        } finally {
+            return empty;
         }
     }
 }

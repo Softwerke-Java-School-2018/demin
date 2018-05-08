@@ -3,6 +3,8 @@ package com.miros.testproject.service;
 import com.miros.testproject.data.DAO.DeviceDAO;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.exception.RuntimeEx;
+import com.sun.istack.internal.NotNull;
+
 
 import java.util.stream.Collectors;
 import java.util.*;
@@ -10,20 +12,23 @@ import java.util.stream.Stream;
 
 public class DeviceService {
     private List<Device> deviceDAO = DeviceDAO.getInstance().getDeviceList();
+    private volatile Device device;
 
-    public boolean save(Device device) throws RuntimeEx {
+    public boolean save(@NotNull Device device) throws RuntimeEx {
         return deviceDAO.add(device);
     }
 
-    public Device find(int id) throws RuntimeEx {
-        return deviceDAO.get(id);
+    public Device find(@NotNull int id) throws IndexOutOfBoundsException {
+        device = deviceDAO.get(id);
+        return device;
     }
 
-    public Device delete(int id) throws RuntimeEx {
-        return deviceDAO.remove(id);
+    public Device delete(@NotNull int id) throws RuntimeEx {
+        device = deviceDAO.get(id);
+        return device;
     }
 
-    public boolean delete(Device device)throws RuntimeEx {
+    public boolean delete(@NotNull Device device) throws RuntimeEx {
         return deviceDAO.remove(device);
     }
 
@@ -31,15 +36,15 @@ public class DeviceService {
         return deviceDAO.stream();
     }
 
-    public boolean exist(int id) throws RuntimeEx {
-            int size = deviceDAO.stream()
-                    .filter(s -> s.getId() == id)
-                    .collect(Collectors.toList())
-                    .size();
+    public boolean exist(@NotNull int id) throws RuntimeEx {
+        int size = deviceDAO.stream()
+                .filter(s -> s.getId() == id)
+                .collect(Collectors.toList())
+                .size();
 
-            if (size > 0) {
-                return true;
-            }
-            return false;
+        if (size > 0) {
+            return true;
+        }
+        return false;
     }
 }

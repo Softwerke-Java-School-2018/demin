@@ -1,9 +1,12 @@
 package com.miros.testproject.controller;
 
 import com.miros.testproject.BaseClass;
+
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import com.miros.testproject.Main;
 import com.miros.testproject.controller.activity.UserActivityFindController;
@@ -11,6 +14,7 @@ import com.miros.testproject.controller.device.DeviceFindController;
 import com.miros.testproject.controller.user.UserFindController;
 import com.miros.testproject.data.TempData;
 import com.miros.testproject.data.entity.User;
+import com.miros.testproject.exception.RuntimeEx;
 import com.miros.testproject.service.TempDataService;
 import lombok.Data;
 
@@ -22,6 +26,13 @@ public abstract class BaseClassController extends BaseClass {
     protected static final UserFindController userFindController = new UserFindController();
     protected static final DeviceFindController deviceFindController = new DeviceFindController();
     protected static final UserActivityFindController userActivityFindController = new UserActivityFindController();
+    protected Optional empty = Optional.empty();
+
+
+    protected LocalDate dateParser(String date) throws RuntimeEx {
+        localDate = LocalDate.parse(date);
+        return localDate;
+    }
 }
 
 
