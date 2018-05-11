@@ -1,18 +1,21 @@
 package com.miros.testproject.controller.user;
 
-import com.miros.testproject.controller.BaseClassController;
+import com.miros.testproject.controller.BaseController;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.exception.ParseException;
 import com.miros.testproject.exception.RuntimeEx;
+import com.miros.testproject.service.BaseClassService;
 import com.miros.testproject.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
-public class UserController extends BaseClassController {
-    private UserService userService = new UserService();
+/**
+ * Controller for Create, Delete, Update User Entity
+ */
+public class UserController extends BaseController {
+    private UserService userService = BaseClassService.getInstance().getUserService();
     private final static Logger log = LoggerFactory.getLogger(UserController.class);
 
     /**
@@ -39,12 +42,12 @@ public class UserController extends BaseClassController {
             waitForEnter();
         } catch (RuntimeEx e) {
             log.info("User create: Save new user exception", e);
-        } finally {
-            return empty;
         }
+        return empty;
     }
 
     /**
+     * Delete current User
      * @param id
      */
 
@@ -60,12 +63,12 @@ public class UserController extends BaseClassController {
             utils.printLine("User with " + id + " id number, doesn't exist");
             log.info("Runtime :", e);
             waitForEnter();
-        } finally {
-            return empty;
         }
+        return empty;
     }
 
     /**
+     * Update User by Several parametres
      * @param id
      * @param name
      * @param surname
@@ -104,9 +107,8 @@ public class UserController extends BaseClassController {
             utils.printLine("Invalid Date format, try again");
             log.info("User update: Invalid date Format", ex);
             waitForEnter();
-        } finally {
-            return empty;
         }
+        return empty;
     }
 }
 

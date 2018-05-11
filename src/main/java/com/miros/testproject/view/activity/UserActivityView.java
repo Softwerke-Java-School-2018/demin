@@ -1,16 +1,19 @@
 package com.miros.testproject.view.activity;
 
+import com.miros.testproject.controller.ControllersFabric;
 import com.miros.testproject.controller.activity.UserActivityController;
-import com.miros.testproject.view.BaseClassView;
-
-
+import com.miros.testproject.view.BaseView;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class UserActivityView extends BaseClassView {
-    private UserActivityController userActivityController = new UserActivityController();
+/**
+ * This class creates a menu for Create, Delete, Update
+ *  some UserActivities and redirect on UserActivity Controller
+ */
+public class UserActivityView extends BaseView {
+    private UserActivityController userActivityController = (UserActivityController) ControllersFabric.getController(UserActivityController.class).get();
     private final String USER_ACTIVITY_VIEW = "Enter the section number:\n" +
             "1 - create a purchase entry\n" +
             "2 - delete a purchase entry\n";

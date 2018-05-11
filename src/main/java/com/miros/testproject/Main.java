@@ -1,7 +1,6 @@
 package com.miros.testproject;
 
 import com.miros.testproject.data.DataCreator;
-
 import com.miros.testproject.view.MainMenuView;
 
 public class Main {
@@ -9,9 +8,11 @@ public class Main {
     public static void main(String[] args) {
         DataCreator dataCreator = new DataCreator();
         dataCreator.dataAdd();
-        mainMenuView.baseMenu();
+        new MainMenuView().baseMenu();
     }
+
     public static MainMenuView getMainMenuView() {
         return mainMenuView;
     }
+
 }

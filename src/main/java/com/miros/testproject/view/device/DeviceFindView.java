@@ -1,12 +1,17 @@
 package com.miros.testproject.view.device;
 
+import com.miros.testproject.controller.ControllersFabric;
 import com.miros.testproject.controller.device.DeviceFindController;
-import com.miros.testproject.view.BaseClassView;
+import com.miros.testproject.view.BaseView;
 import lombok.Data;
 
+/**
+ *  This class creates a menu to search
+ *  for devices and redirects it to the controller
+ */
 @Data
-public class DeviceFindView extends BaseClassView {
-    private DeviceFindController deviceFindController = new DeviceFindController();
+public class DeviceFindView extends BaseView {
+    private DeviceFindController deviceFindController = (DeviceFindController) ControllersFabric.getController(DeviceFindController.class).get();
     private final String DEVICE_FIND_VIEW = "Choose which parameter will be searched\n" +
             "1 - id\n" +
             "2 - Type\n" +
@@ -28,7 +33,7 @@ public class DeviceFindView extends BaseClassView {
             case "3":
                 utils.printLine("Enter color");
                 String color = utils.readLine();
-                deviceFindController.findDeviceColor(color);
+                deviceFindController.findColor(color);
             case "4":
                 utils.printLine("Enter model");
                 String model = utils.readLine();

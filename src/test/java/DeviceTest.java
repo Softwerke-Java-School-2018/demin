@@ -14,10 +14,10 @@ import java.util.Optional;
 
 public class DeviceTest {
     private DeviceFindController deviceFindController = new DeviceFindController();
-    private DeviceController deviceController =new DeviceController();
+    private DeviceController deviceController = new DeviceController();
     private DeviceService deviceService = new DeviceService();
-    private DeviceType type;
-    private DeviceColor color;
+    private DeviceType enumType;
+    private DeviceColor enumColor;
     private String model;
 
     private String type1;
@@ -28,8 +28,8 @@ public class DeviceTest {
 
     @Before
     public void init() {
-        type = DeviceType.PLAYER;
-        color = DeviceColor.BLACK;
+        enumType = DeviceType.PLAYER;
+        enumColor = DeviceColor.BLACK;
         model = "qwer";
 
         type1 = "PLAYER";
@@ -41,20 +41,20 @@ public class DeviceTest {
     }
 
     @Test
-    public void deviceMain() {
-        device = new Device(type, color, model);
+    public void device_Find() {
+        device = new Device(enumType, enumColor, model);
         deviceFindController.findModel(model);
-        deviceFindController.findDeviceColor(color.toString());
-        deviceFindController.findDeviceType(type.toString());
+        deviceFindController.findColor(enumColor.toString());
+        deviceFindController.findDeviceType(enumType.toString());
         deviceService.save(device);
     }
 
     @Test
-    public void testCreate() {
+    public void create_Device_Controller() {
         Optional<Device> device = deviceController.create(type1, color1, model1);
         Assert.assertNotNull(device);
         Assert.assertNotNull(device.get());
-        Assert.assertEquals(device.get(), new Device(type, color, model));
+        Assert.assertEquals(device.get(), new Device(enumType, enumColor, model));
     }
 
     @After

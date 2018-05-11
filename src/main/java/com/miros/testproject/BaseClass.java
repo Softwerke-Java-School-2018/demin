@@ -5,10 +5,10 @@ import com.miros.testproject.util.Utils;
 import java.time.LocalDate;
 
 /**
- * Main class in App
+ * All classes extends from this class
  */
 public abstract class BaseClass {
-    protected final Utils utils = new Utils();
+    protected static final Utils utils = new Utils();
     protected LocalDate localDate;
     protected void waitForEnter(){
         utils.waitForEnter();

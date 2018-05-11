@@ -2,28 +2,33 @@ package com.miros.testproject.service;
 import com.miros.testproject.data.DAO.UserDAO;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.exception.RuntimeEx;
-import com.sun.istack.internal.NotNull;
+import lombok.NonNull;
 
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.stream.Stream;
 
+
+/**
+ * Service layer for Users
+ */
 public class UserService {
+    //Gets list with all app Users
     private List<User> userDAO = UserDAO.getInstance().getInstanceList();
 
-    public boolean save(@NotNull User user) throws RuntimeEx {
+    public boolean save(User user) throws RuntimeEx {
             return userDAO.add(user);
     }
 
-    public User find(@NotNull int id) throws RuntimeEx {
+    public User find(int id) throws RuntimeEx {
         return userDAO.get(id);
     }
 
-    public User delete(@NotNull int id) {
+    public User delete(int id) {
         return userDAO.remove(id);
     }
 
-    public boolean delete(@NotNull User user) {
+    public boolean delete(User user) {
         return userDAO.remove(user);
     }
 
@@ -31,7 +36,12 @@ public class UserService {
         return userDAO.stream();
     }
 
-    public boolean exist(@NotNull int id){
+    /**
+     * return true if entity exist
+     * @param id entity dd
+     * @return
+     */
+    public boolean exist(int id){
         int size = userDAO.stream()
                 .filter(s-> s.getId() == id)
                 .collect(Collectors.toList())

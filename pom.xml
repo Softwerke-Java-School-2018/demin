@@ -16,6 +16,11 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -43,7 +48,8 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>RELEASE</version>
+            <version>4.11</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

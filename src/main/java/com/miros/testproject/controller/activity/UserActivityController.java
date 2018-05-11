@@ -1,11 +1,11 @@
 package com.miros.testproject.controller.activity;
 
-
-import com.miros.testproject.controller.BaseClassController;
+import com.miros.testproject.controller.BaseController;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.entity.User;
 import com.miros.testproject.data.entity.UserActivity;
 import com.miros.testproject.exception.RuntimeEx;
+import com.miros.testproject.service.BaseClassService;
 import com.miros.testproject.service.DeviceService;
 import com.miros.testproject.service.UserActivityService;
 import com.miros.testproject.service.UserService;
@@ -19,10 +19,13 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class UserActivityController extends BaseClassController {
-    private UserService userService = new UserService();
-    private DeviceService deviceService = new DeviceService();
-    private UserActivityService userActivityService = new UserActivityService();
+/**
+ * Controller for Create, Delete, Update UserActivity Entity
+ */
+public class UserActivityController extends BaseController {
+    private UserService userService = BaseClassService.getInstance().getUserService();
+    private DeviceService deviceService = BaseClassService.getInstance().getDeviceService();
+    private UserActivityService userActivityService = BaseClassService.getInstance().getUserActivityService();
     private final static Logger log = LoggerFactory.getLogger(UserActivityController.class);
     private UserActivity userActivity;
 
@@ -59,9 +62,8 @@ public class UserActivityController extends BaseClassController {
             waitForEnter();
         } catch (RuntimeEx e) {
             log.info(e.getMessage(), e);
-        } finally {
-            return empty;
         }
+        return empty;
     }
 
     public Optional<UserActivity> delete(Integer id) {
@@ -74,8 +76,7 @@ public class UserActivityController extends BaseClassController {
             utils.printLine("Purchase with id" + id + " doesn't exist");
             log.info("UserActivity create: Delete UserActivity Runtime problem, id: " + id, e);
             waitForEnter();
-        } finally {
-            return empty;
         }
+        return empty;
     }
 }

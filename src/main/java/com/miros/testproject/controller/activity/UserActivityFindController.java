@@ -1,8 +1,11 @@
 package com.miros.testproject.controller.activity;
 
-import com.miros.testproject.controller.BaseClassController;
+import com.miros.testproject.controller.BaseController;
+import com.miros.testproject.controller.sort.SortClass;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.entity.UserActivity;
+import com.miros.testproject.exception.RuntimeEx;
+import com.miros.testproject.service.BaseClassService;
 import com.miros.testproject.service.UserActivityService;
 
 import java.time.LocalDate;
@@ -11,12 +14,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.List;
 
-public class UserActivityFindController extends BaseClassController {
-    private UserActivityService userActivityService = new UserActivityService();
-    private List<UserActivity> tempUserActivityDAO = tempDataService.getTempDAOUserActivityList();
+
+/**
+ * Controller for find UserActivity elements
+ */
+public class UserActivityFindController extends BaseController {
+    private UserActivityService userActivityService = BaseClassService.getInstance().getUserActivityService();
+    private SortClass sortClass = SortClass.getInstance();
     private List<UserActivity> userActivityList;
 
-    public void findByUser(String userName) {
+    public void findUser(String userName) {
         userActivityList = userActivityService
                 .findAll()
                 .filter(s -> s.getUser()
@@ -25,15 +32,15 @@ public class UserActivityFindController extends BaseClassController {
                 .collect(Collectors.toList());
         userActivityList
                 .forEach(s -> utils.printLine(s));
-        tempUserActivityDAO.clear();
-        tempUserActivityDAO.addAll(userActivityList);
-        utils.sortFunc(userActivityFindController);
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
     }
 
     /**
+     * Find UserActivity by name from Device List contains in UserActivity
+     *
      * @param model
      */
-    public void find_By_Device_Model(String model) {
+    public void findDevice(String model) {
         userActivityList = userActivityService
                 .findAll()
                 .collect(Collectors.toList());
@@ -49,9 +56,7 @@ public class UserActivityFindController extends BaseClassController {
             }
             count.set(0);
         }
-        tempUserActivityDAO.clear();
-        tempUserActivityDAO.addAll(userActivityList);
-        utils.sortFunc(userActivityFindController);
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
     }
 
     /**
@@ -61,18 +66,16 @@ public class UserActivityFindController extends BaseClassController {
         try {
             utils.printLine(userActivityService.find(userActivityId));
             waitForEnter();
-        } catch (IndexOutOfBoundsException e) {
+        } catch (RuntimeEx e) {
             utils.printLine(e.getMessage());
         }
-        tempUserActivityDAO.clear();
-        tempUserActivityDAO.addAll(userActivityList);
-        utils.sortFunc(userActivityFindController);
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
     }
 
     /**
      * @param date
      */
-    public void localDateFind(String date) {
+    public void findDate(String date) {
         localDate = LocalDate.parse(date, formatter);
         userActivityList = userActivityService
                 .findAll()
@@ -80,8 +83,6 @@ public class UserActivityFindController extends BaseClassController {
                 .collect(Collectors.toList());
         userActivityList
                 .forEach(s -> utils.printLine(s));
-        tempUserActivityDAO.clear();
-        tempUserActivityDAO.addAll(userActivityList);
-        utils.sortFunc(userActivityFindController);
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
     }
 }

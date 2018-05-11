@@ -1,21 +1,24 @@
 package com.miros.testproject.controller.user;
 
-import com.miros.testproject.controller.BaseClassController;
+import com.miros.testproject.controller.BaseController;
+import com.miros.testproject.controller.sort.SortClass;
 import com.miros.testproject.data.entity.User;
+import com.miros.testproject.service.BaseClassService;
 import com.miros.testproject.service.UserService;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-public class UserFindController extends BaseClassController {
-    private UserService userService = new UserService();
-    private List<User> tempUserDAO = tempDataService.getTempDAOUserList();
+/**
+ * Controller for find User elements
+ */
+public class UserFindController extends BaseController {
+    private UserService userService = BaseClassService.getInstance().getUserService();
+    private SortClass sortClass = SortClass.getInstance();
     private List<User> userList;
 
     /**
-     *
      * @param id
      */
     public void findId(Integer id) {
@@ -24,7 +27,6 @@ public class UserFindController extends BaseClassController {
     }
 
     /**
-     *
      * @param name
      */
     public void findName(String name) {
@@ -34,13 +36,10 @@ public class UserFindController extends BaseClassController {
                 .collect(Collectors.toList());
         userList
                 .forEach(utils::printLine);
-        tempUserDAO.clear();
-        tempUserDAO.addAll(userList);
-        utils.sortFunc(userFindController);
+        sortClass.sortFunc(UserFindController.class, userList.stream());
     }
 
     /**
-     *
      * @param birthDay
      */
     public void findBirthDay(String birthDay) {
@@ -51,9 +50,7 @@ public class UserFindController extends BaseClassController {
                 .collect(Collectors.toList());
         userList
                 .forEach(utils::printLine);
-        tempUserDAO.clear();
-        tempUserDAO.addAll(userList);
-        utils.sortFunc(userFindController);
+        sortClass.sortFunc(UserFindController.class, userList.stream());
     }
 
     public void showAll() {
@@ -62,8 +59,6 @@ public class UserFindController extends BaseClassController {
                 .collect(Collectors.toList());
         userList
                 .forEach(utils::printLine);
-        tempUserDAO.clear();
-        tempUserDAO.addAll(userList);
-        utils.sortFunc(userFindController);
+        sortClass.sortFunc(UserFindController.class, userList.stream());
     }
 }

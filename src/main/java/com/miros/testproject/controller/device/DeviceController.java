@@ -1,18 +1,22 @@
 package com.miros.testproject.controller.device;
 
-import com.miros.testproject.controller.BaseClassController;
+import com.miros.testproject.controller.BaseController;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
 import com.miros.testproject.exception.RuntimeEx;
+import com.miros.testproject.service.BaseClassService;
 import com.miros.testproject.service.DeviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
-public class DeviceController extends BaseClassController {
-    private DeviceService deviceService = new DeviceService();
+/**
+ * Controller for Create, Delete, Update Device Entity
+ */
+public class DeviceController extends BaseController {
+    private DeviceService deviceService = BaseClassService.getInstance().getDeviceService();
     private final static Logger log = LoggerFactory.getLogger(DeviceController.class);
     private volatile Device device;
 
@@ -42,9 +46,8 @@ public class DeviceController extends BaseClassController {
         } catch (Exception e) {
             log.info("Device create: Exception err", e);
             waitForEnter();
-        } finally {
-            return empty;
         }
+        return empty;
     }
 
     public Optional<Device> delete(int id) {
@@ -58,9 +61,8 @@ public class DeviceController extends BaseClassController {
             log.info("Device delete: not existing Id");
             utils.printLine("Device with " + id + " id number, doesn't exist");
             waitForEnter();
-        } finally {
-            return empty;
         }
+        return empty;
     }
 
     public Optional<Device> update(int id, String type, String color, String model) {
@@ -93,10 +95,8 @@ public class DeviceController extends BaseClassController {
             log.info("Update: device doesnt exist, id: " + id, e);
             utils.printLine("Device with " + id + " id number, doesn't exist");
             waitForEnter();
-        } finally {
-            return empty;
         }
-
+        return empty;
     }
 }
 

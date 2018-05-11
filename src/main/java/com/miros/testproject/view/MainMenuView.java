@@ -7,8 +7,11 @@ import com.miros.testproject.view.user.UserView;
 import lombok.Data;
 
 
+/**
+ *  This class make application MainMenu
+ */
 @Data
-public class MainMenuView extends BaseClassView {
+public class MainMenuView extends BaseView {
     private UserView userView;
     private DeviceView deviceView;
     private UserActivityView userActivityView;

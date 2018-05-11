@@ -1,10 +1,12 @@
 package com.miros.testproject.controller.device;
 
-import com.miros.testproject.controller.BaseClassController;
+import com.miros.testproject.controller.BaseController;
+import com.miros.testproject.controller.sort.SortClass;
 import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.data.enums.DeviceColor;
 import com.miros.testproject.data.enums.DeviceType;
 import com.miros.testproject.exception.RuntimeEx;
+import com.miros.testproject.service.BaseClassService;
 import com.miros.testproject.service.DeviceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +14,12 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DeviceFindController extends BaseClassController {
-    private DeviceService deviceService = new DeviceService();
-    private List<Device> temDeviceDAO = tempDataService.getTempDAODeviceList();
+/**
+ * Controller for find Device elements
+ */
+public class DeviceFindController extends BaseController {
+    private DeviceService deviceService = BaseClassService.getInstance().getDeviceService();
+    private SortClass sortClass = SortClass.getInstance();
     private List<Device> deviceList;
     private final static Logger log = LoggerFactory.getLogger(DeviceFindController.class);
 
@@ -29,9 +34,8 @@ public class DeviceFindController extends BaseClassController {
         }
     }
 
-    public void findDeviceColor(String color) {
+    public void findColor(String color) {
         DeviceColor deviceColor = DeviceColor.getColorByString(color);
-
         if (!deviceColor.equals(DeviceColor.NONE)) {
             try {
                 deviceList = deviceService
@@ -48,10 +52,7 @@ public class DeviceFindController extends BaseClassController {
                 waitForEnter();
             }
         }
-        temDeviceDAO.clear();
-        temDeviceDAO.addAll(deviceList);
-        utils.sortFunc(deviceFindController);
-
+        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
     }
 
     public void findModel(String model) {
@@ -60,9 +61,7 @@ public class DeviceFindController extends BaseClassController {
                 .filter(s -> s.getModel().equalsIgnoreCase(model))
                 .collect(Collectors.toList());
         deviceList.forEach(s -> utils.printLine(s));
-        temDeviceDAO.clear();
-        temDeviceDAO.addAll(deviceList);
-        utils.sortFunc(deviceFindController);
+        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
     }
 
     public void findDeviceType(String type) {
@@ -76,9 +75,7 @@ public class DeviceFindController extends BaseClassController {
                     .collect(Collectors.toList());
             deviceList.forEach(s -> utils.printLine(s));
         }
-        temDeviceDAO.clear();
-        temDeviceDAO.addAll(deviceList);
-        utils.sortFunc(deviceFindController);
+        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
     }
 
     public void showAll() {
@@ -87,8 +84,6 @@ public class DeviceFindController extends BaseClassController {
                 .collect(Collectors.toList());
         deviceList
                 .forEach(utils::printLine);
-        temDeviceDAO.clear();
-        temDeviceDAO.addAll(deviceList);
-        utils.sortFunc(deviceFindController);
+        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
     }
 }

@@ -1,5 +1,11 @@
 package com.miros.testproject.view;
 
+import java.util.stream.Stream;
+
+
+/**
+ * Interface for all SortView classes
+ */
 public interface SortView {
-     void sort();
+     <T> void sort(Stream<T> stream);
 }

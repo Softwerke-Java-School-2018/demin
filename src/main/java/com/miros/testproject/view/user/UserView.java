@@ -1,10 +1,16 @@
 package com.miros.testproject.view.user;
 
+import com.miros.testproject.controller.ControllersFabric;
 import com.miros.testproject.controller.user.UserController;
-import com.miros.testproject.view.BaseClassView;
+import com.miros.testproject.view.BaseView;
 
-public class UserView extends BaseClassView {
-    private UserController userController = new UserController();
+
+/**
+ *  This class creates a menu for Create, Delete, Update
+ *  some user and redirect on user Controller
+ */
+public class UserView extends BaseView {
+    private UserController userController =  (UserController) ControllersFabric.getController(UserController.class).get();
     private static final String USER_VIEW = "Enter the command number:\n" +
             "1 - user create\n" +
             "2 - user remove\n" +

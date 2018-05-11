@@ -1,13 +1,15 @@
 package com.miros.testproject.view.device;
 
+import com.miros.testproject.controller.ControllersFabric;
 import com.miros.testproject.controller.device.DeviceController;
-import com.miros.testproject.view.BaseClassView;
+import com.miros.testproject.view.BaseView;
 
 /**
- * View для управления устройствами
+ * This class creates a menu for Create, Delete, Update
+ *  some device and redirect on device Controller
  */
-public class DeviceView extends BaseClassView {
-    private DeviceController deviceController = new DeviceController();
+public class DeviceView extends BaseView {
+    private DeviceController deviceController = (DeviceController) ControllersFabric.getController(DeviceController.class).get();
     private static final String DEVICE_VIEW = "Enter the command number:\n" +
             "1 - device create\n" +
             "2 - device remove\n" +

@@ -5,8 +5,12 @@ import com.miros.testproject.view.device.DeviceFindView;
 import com.miros.testproject.view.user.UserFindView;
 import lombok.Data;
 
+
+/**
+ *  This class make application FindMenu
+ */
 @Data
-public class FindView extends BaseClassView {
+public class FindView extends BaseView {
     private UserFindView userFindView;
     private DeviceFindView deviceFindView;
     private UserActivityFindView userActivityFindView;
