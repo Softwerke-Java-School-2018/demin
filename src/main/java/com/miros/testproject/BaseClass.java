@@ -9,7 +9,7 @@ import java.time.LocalDate;
  */
 public abstract class BaseClass {
     protected static final Utils utils = new Utils();
-    protected LocalDate localDate;
+    protected static LocalDate localDate;
     protected void waitForEnter(){
         utils.waitForEnter();
     }

@@ -13,17 +13,17 @@ import com.miros.testproject.exception.RuntimeEx;
 import lombok.Data;
 
 /**
- * All controllers extends from this class,
- * this class Init all controllers for app
+ * All controllers extends from this class
+ *
  */
 
 @Data
 public class BaseController extends BaseClass {
-    protected final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    protected static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     //Application use this
     protected Optional empty = Optional.empty();
 
-    protected LocalDate dateParser(String date) throws RuntimeEx {
+    public static LocalDate dateParser(String date) throws RuntimeEx {
         localDate = LocalDate.parse(date, formatter);
         return localDate;
     }

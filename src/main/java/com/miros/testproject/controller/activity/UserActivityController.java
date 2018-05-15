@@ -27,7 +27,7 @@ public class UserActivityController extends BaseController {
     private DeviceService deviceService = BaseClassService.getInstance().getDeviceService();
     private UserActivityService userActivityService = BaseClassService.getInstance().getUserActivityService();
     private final static Logger log = LoggerFactory.getLogger(UserActivityController.class);
-    private UserActivity userActivity;
+    private volatile UserActivity userActivity;
 
     //Stream?
     /*
@@ -51,8 +51,12 @@ public class UserActivityController extends BaseController {
                         log.info("UserActivity create: Device added in UserActivity.deviceList, Device id: " + deviceId);
                     }
                 }
-                UserActivity userActivity = new UserActivity(user, deviceList, localDate);
-                userActivityService.save(userActivity);
+                userActivity = UserActivity.builder()
+                        .setUser(user)
+                        .setDeviceList(deviceList)
+                        .setDate(localDate)
+                        .build();
+                                userActivityService.save(userActivity);
                 log.info("UserActivity create: UserActivity created id: " + userActivity.getId());
                 utils.printLine("Purchase created");
                 waitForEnter();

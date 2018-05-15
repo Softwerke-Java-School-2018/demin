@@ -18,7 +18,7 @@ import java.util.Optional;
 public class ControllersFabric {
 
     public static <T> Optional<BaseController> getController(Class<T> clazz) {
-        if (clazz.getName().equals(UserController.class.getName())) {
+        if (clazz.isAssignableFrom(UserController.class)) {
             return Optional.of(new UserController());
         }
         if (clazz.isAssignableFrom(DeviceController.class)) {

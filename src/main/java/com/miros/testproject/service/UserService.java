@@ -1,13 +1,11 @@
 package com.miros.testproject.service;
+
 import com.miros.testproject.data.DAO.UserDAO;
 import com.miros.testproject.data.entity.User;
-import com.miros.testproject.exception.RuntimeEx;
-import lombok.NonNull;
 
-import java.util.stream.Collectors;
+import java.util.Optional;
 import java.util.List;
 import java.util.stream.Stream;
-
 
 /**
  * Service layer for Users
@@ -16,39 +14,50 @@ public class UserService {
     //Gets list with all app Users
     private List<User> userDAO = UserDAO.getInstance().getInstanceList();
 
-    public boolean save(User user) throws RuntimeEx {
-            return userDAO.add(user);
+    public Optional<User> save(User user) throws IndexOutOfBoundsException {
+        Optional<User> optionalUser = Optional.ofNullable(user);
+        boolean result = optionalUser.isPresent();
+        if (result) {
+            userDAO.add(optionalUser.get());
+        }
+        return optionalUser;
     }
 
-    public User find(int id) throws RuntimeEx {
+    public User find(int id) throws IndexOutOfBoundsException {
         return userDAO.get(id);
     }
 
-    public User delete(int id) {
+    public User delete(int id) throws IndexOutOfBoundsException {
         return userDAO.remove(id);
     }
 
-    public boolean delete(User user) {
-        return userDAO.remove(user);
+    public Optional<User> delete(User user) throws NullPointerException {
+        Optional<User> optionalUser = Optional.ofNullable(user);
+        boolean result = optionalUser.isPresent();
+        if (result) {
+            userDAO.remove(user);
+        }
+        return optionalUser;
     }
 
-    public Stream<User> findAll(){
+    public void clear() throws UnsupportedOperationException{
+        userDAO.clear();
+    }
+
+    public Stream<User> findAll() {
         return userDAO.stream();
     }
 
     /**
      * return true if entity exist
+     *
      * @param id entity dd
      * @return
      */
-    public boolean exist(int id){
-        int size = userDAO.stream()
-                .filter(s-> s.getId() == id)
-                .collect(Collectors.toList())
-                .size();
-        if(size>0){
-            return true;
-        }
-        return false;
+    public boolean exist(int id) {
+        Optional<User> user = userDAO.stream()
+                .filter(s -> s.getId() == id)
+                .findAny();
+        return user.isPresent();
     }
 }

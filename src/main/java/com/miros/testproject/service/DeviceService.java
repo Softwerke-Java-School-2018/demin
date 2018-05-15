@@ -16,8 +16,13 @@ public class DeviceService {
     private List<Device> deviceDAO = DeviceDAO.getInstance().getDeviceList();
     private volatile Device device;
 
-    public boolean save(Device device) throws IndexOutOfBoundsException {
-        return deviceDAO.add(device);
+    public Optional<Device> save(Device device) throws IndexOutOfBoundsException {
+        Optional<Device> optionalDevice = Optional.ofNullable(device);
+        boolean result = optionalDevice.isPresent();
+        if (result) {
+            deviceDAO.add(optionalDevice.get());
+        }
+        return optionalDevice;
     }
 
     public Device find(int id) throws IndexOutOfBoundsException {
@@ -26,27 +31,35 @@ public class DeviceService {
     }
 
     public Device delete(int id) throws NullPointerException, IllegalArgumentException {
-        device = deviceDAO.get(id);
-        return device;
+        return deviceDAO.remove(id);
     }
 
-    public boolean delete(Device device) throws IndexOutOfBoundsException {
-        return deviceDAO.remove(device);
+    public Optional<Device> delete(Device device) throws IndexOutOfBoundsException {
+        Optional<Device> optionalDevice = Optional.ofNullable(device);
+        boolean result = optionalDevice.isPresent();
+        if (result) {
+            deviceDAO.remove(optionalDevice.get());
+        }
+        return optionalDevice;
     }
 
-    public Stream<Device> findAll()  {
+    public Stream<Device> findAll() {
         return deviceDAO.stream();
     }
 
-    public boolean exist(int id) throws RuntimeEx {
-        int size = deviceDAO.stream()
-                .filter(s -> s.getId() == id)
-                .collect(Collectors.toList())
-                .size();
+    public void clear() throws UnsupportedOperationException {
+        deviceDAO.clear();
+    }
 
-        if (size > 0) {
-            return true;
-        }
-        return false;
+    /**
+     * return true if entity exist
+     * @param id
+     * @return
+     */
+    public boolean exist(int id) {
+        Optional<Device> device = deviceDAO.stream()
+                .filter(s -> s.getId() == id)
+                .findAny();
+        return device.isPresent();
     }
 }

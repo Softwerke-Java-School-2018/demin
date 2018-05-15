@@ -7,6 +7,6 @@ import java.util.Comparator;
 public class UserActivityDateComparator implements Comparator<UserActivity> {
     @Override
     public int compare(UserActivity o1, UserActivity o2) {
-        return o1.getLocalDate().compareTo(o2.getLocalDate());
+        return o1.getDate().compareTo(o2.getDate());
     }
 }

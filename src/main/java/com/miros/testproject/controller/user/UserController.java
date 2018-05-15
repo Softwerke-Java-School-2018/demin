@@ -17,6 +17,7 @@ import java.util.Optional;
 public class UserController extends BaseController {
     private UserService userService = BaseClassService.getInstance().getUserService();
     private final static Logger log = LoggerFactory.getLogger(UserController.class);
+    private volatile User user;
 
     /**
      * Create new user
@@ -30,12 +31,18 @@ public class UserController extends BaseController {
     public Optional<User> create(String name, String surname, String patronymic, String birthDay) {
         try {
             localDate = dateParser(birthDay);
-            User newUser = new User(name, surname, patronymic, localDate);
-            userService.save(newUser);
+            user = User.builder()
+                    .setName(name)
+                    .setSurname(surname)
+                    .setPatronymic(patronymic)
+                    .setBirthDay(localDate)
+                    .build();
+
+            userService.save(user);
             utils.printLine("User created");
-            log.info("User create: Create new user with id: " + newUser.getId());
+            log.info("User create: Create new user with id: " + user.getId());
             waitForEnter();
-            return Optional.of(newUser);
+            return Optional.of(user);
         } catch (ParseException e) {
             utils.printLine("Invalid Date format, try again");
             log.info("User create: Invalid date format");
@@ -48,12 +55,13 @@ public class UserController extends BaseController {
 
     /**
      * Delete current User
+     *
      * @param id
      */
 
     public Optional<User> delete(int id) {
         try {
-            User user = userService.find(id);
+            user = userService.find(id);
             userService.delete(user);
             log.info("User delete id: " + id);
             utils.printLine("User deleted");
@@ -69,6 +77,7 @@ public class UserController extends BaseController {
 
     /**
      * Update User by Several parametres
+     *
      * @param id
      * @param name
      * @param surname
@@ -78,7 +87,7 @@ public class UserController extends BaseController {
 
     public Optional<User> update(int id, String name, String surname, String patronymic, String birthDay) {
         try {
-            User user = userService.find(id);
+            user = userService.find(id);
             if (!"".equals(birthDay)) {
                 dateParser(birthDay);
                 user.setBirthDay(localDate);

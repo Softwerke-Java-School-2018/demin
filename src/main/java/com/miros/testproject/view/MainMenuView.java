@@ -45,7 +45,7 @@ public class MainMenuView extends BaseView {
                 System.exit(0);
             default:
                 utils.printLine("It's Wrong");
-                baseMenu();
+                waitForEnter();
         }
     }
 }

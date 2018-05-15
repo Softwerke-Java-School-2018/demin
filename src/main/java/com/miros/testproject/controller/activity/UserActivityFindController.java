@@ -79,7 +79,7 @@ public class UserActivityFindController extends BaseController {
         localDate = LocalDate.parse(date, formatter);
         userActivityList = userActivityService
                 .findAll()
-                .filter(s -> s.getLocalDate().equals(localDate))
+                .filter(s -> s.getDate().equals(localDate))
                 .collect(Collectors.toList());
         userActivityList
                 .forEach(s -> utils.printLine(s));

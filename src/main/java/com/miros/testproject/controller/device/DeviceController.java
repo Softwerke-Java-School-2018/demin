@@ -20,7 +20,7 @@ public class DeviceController extends BaseController {
     private final static Logger log = LoggerFactory.getLogger(DeviceController.class);
     private volatile Device device;
 
-    public Optional<Device> create(String type, String color, String model) {
+    public Optional<Device> create(String type, String color, String devModel) {
         DeviceType devType = DeviceType.getTypeByString(type);
         DeviceColor devColor = DeviceColor.getColorByString(color);
         if (devColor.equals(DeviceColor.NONE)) {
@@ -34,7 +34,11 @@ public class DeviceController extends BaseController {
             waitForEnter();
         }
         try {
-            device = new Device(devType, devColor, model);
+            device = Device.builder()
+                    .setType(devType)
+                    .setColor(devColor)
+                    .setModel(devModel)
+                    .build();
             deviceService.save(device);
             log.info("Device create: Device created" + device.getId());
             utils.printLine("Device created");

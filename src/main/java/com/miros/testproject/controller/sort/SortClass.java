@@ -63,5 +63,7 @@ public class SortClass extends BaseClass {
                 sortView.get().sort(entityList);
             }
         }
+        utils.printLine("It,s wrong");
+        waitForEnter();
     }
 }

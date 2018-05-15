@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         DataCreator dataCreator = new DataCreator();
         dataCreator.dataAdd();
-        new MainMenuView().baseMenu();
+        mainMenuView.baseMenu();
     }
 
     public static MainMenuView getMainMenuView() {
