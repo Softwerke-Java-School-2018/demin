@@ -5,8 +5,7 @@ import com.miros.testproject.controller.activity.UserActivitySortController;
 import com.miros.testproject.view.BaseView;
 import com.miros.testproject.view.SortView;
 import lombok.Data;
-
-import java.util.stream.Stream;
+import java.util.List;
 
 
 /**
@@ -20,7 +19,7 @@ public class UserActivitySortView extends BaseView implements SortView {
             "1 - User Name\n" +
             "2 - Date";
 
-    public void sort(Stream userActivityStream) {
+    public void sort(List userActivityStream) {
         utils.printLine(USER_ACTIVITY_SORT_VIEW);
         String num = utils.readLine();
         switch (num) {
@@ -29,7 +28,7 @@ public class UserActivitySortView extends BaseView implements SortView {
             case "2":
                 userActivitySortController.sortDate(userActivityStream);
             default:
-                waitForEnter();
+                return;
         }
     }
 }

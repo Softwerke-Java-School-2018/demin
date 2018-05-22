@@ -2,13 +2,12 @@ package com.miros.testproject.service;
 
 import com.miros.testproject.data.DataCreator;
 import com.miros.testproject.data.entity.User;
-import com.miros.testproject.data.entity.UserActivity;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
+
 import java.time.LocalDate;
 import java.util.Optional;
 

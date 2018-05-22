@@ -21,13 +21,15 @@ public class DeviceView extends BaseView {
         switch (command) {
             case "1":
                 createDevice();
+                return;
             case "2":
                 deleteDevice();
+                return;
             case "3":
                 updateDevice();
+                return;
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
         }
     }
 

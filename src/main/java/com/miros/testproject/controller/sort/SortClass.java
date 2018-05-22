@@ -11,7 +11,7 @@ import com.miros.testproject.view.device.DeviceSortView;
 import com.miros.testproject.view.user.UserSortView;
 
 import java.util.Optional;
-import java.util.stream.Stream;
+import java.util.List;
 
 /**
  * Fabric for creating sortViews by
@@ -51,19 +51,15 @@ public class SortClass extends BaseClass {
      * @param <T>
      * @return
      */
-    public <T> void sortFunc(Class clazz, Stream<T> entityList) {
-        utils.printLine("Press s to make sort or press Enter to back in Main menu");
+    public <T> void sortFunc(Class clazz, List<T> entityList) {
+        utils.printLine("Press S to make sort or press Enter to back in Main menu");
         String str = utils.readLine();
-        if ("".equals(str)) {
-            Main.getMainMenuView().baseMenu();
-        }
-        if ("s".equals(str)) {
+        if ("S".equals(str.toUpperCase())) {
             Optional<SortView> sortView = sortClass.getSortView(clazz);
             if (sortView.isPresent()) {
                 sortView.get().sort(entityList);
             }
         }
-        utils.printLine("It,s wrong");
-        waitForEnter();
+        return;
     }
 }

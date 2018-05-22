@@ -5,8 +5,7 @@ import com.miros.testproject.controller.user.UserSortController;
 import com.miros.testproject.view.BaseView;
 import com.miros.testproject.view.SortView;
 import lombok.Data;
-
-import java.util.stream.Stream;
+import java.util.List;
 
 
 /**
@@ -24,23 +23,22 @@ public class UserSortView extends BaseView implements SortView {
 
 
     /**
-     * @param userStream  this contains Users to sort
+     * @param userList this contains Users to sort
      */
-    public void sort(Stream userStream) {
+    public void sort(List userList) {
         utils.printLine(USER_SORT_VIEW);
         String num = utils.readLine();
         switch (num) {
             case "1":
-                userSortController.sortByName(userStream);
+                userSortController.sortByName(userList);
             case "2":
-                userSortController.sortBySurname(userStream);
+                userSortController.sortBySurname(userList);
             case "3":
-                userSortController.sortByPatronymic(userStream);
+                userSortController.sortByPatronymic(userList);
             case "4":
-                userSortController.sortByBirthDay(userStream);
+                userSortController.sortByBirthDay(userList);
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
         }
     }
 }

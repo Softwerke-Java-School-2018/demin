@@ -2,10 +2,7 @@ package com.miros.testproject.service;
 
 import com.miros.testproject.data.DAO.UserActivityDAO;
 import com.miros.testproject.data.entity.UserActivity;
-import lombok.NonNull;
 
-
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.*;
 
@@ -45,7 +42,7 @@ public class UserActivityService {
         return userActivityDAO.stream();
     }
 
-    public void clear() throws UnsupportedOperationException{
+    public void clear() {
         userActivityDAO.clear();
     }
 

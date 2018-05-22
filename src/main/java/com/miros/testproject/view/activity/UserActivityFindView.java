@@ -26,6 +26,7 @@ public class UserActivityFindView extends BaseView {
                 utils.printLine("Enter userActivity id");
                 Integer id = Integer.parseInt(utils.readLine());
                 userActivityFindController.findId(id);
+                return;
             case "2":
                 utils.printLine("Enter UserName");
                 String userName = utils.readLine();
@@ -39,8 +40,7 @@ public class UserActivityFindView extends BaseView {
                 String date = utils.readLine();
                 userActivityFindController.findDate(date);
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
 
         }
     }

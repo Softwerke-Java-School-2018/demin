@@ -51,22 +51,6 @@ public class UserActivityServiceTest {
         Assert.assertEquals(result.get().getId(), userActivity.getId());
     }
 
-    @Test
-    public void save_userActivity_null() throws NullPointerException {
-        Optional<UserActivity> result = userActivityService.save(null);
-        Assert.assertEquals(result.isPresent(), false);
-    }
-
-    @Test
-    public void delete_userActivity_success() throws IndexOutOfBoundsException {
-        UserActivity userActivity = userActivityService.delete(0);
-        Assert.assertEquals(UserActivity.class, userActivity.getClass());
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void delete_userActivity_throws_IndexOutOfBounds() throws IndexOutOfBoundsException {
-        userActivityService.delete(100);
-    }
 
     @Test
     public void find_userActivity_success() throws IndexOutOfBoundsException {
@@ -92,6 +76,23 @@ public class UserActivityServiceTest {
         boolean exist2 = userActivityService.exist(100);
         Assert.assertEquals(exist, true);
         Assert.assertEquals(exist2, false);
+    }
+
+    @Test
+    public void save_userActivity_null() throws NullPointerException {
+        Optional<UserActivity> result = userActivityService.save(null);
+        Assert.assertEquals(result.isPresent(), false);
+    }
+
+    @Test
+    public void delete_userActivity_success() throws IndexOutOfBoundsException {
+        UserActivity userActivity = userActivityService.delete(0);
+        Assert.assertEquals(UserActivity.class, userActivity.getClass());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void delete_userActivity_throws_IndexOutOfBounds() throws IndexOutOfBoundsException {
+        userActivityService.delete(100);
     }
 
     @After

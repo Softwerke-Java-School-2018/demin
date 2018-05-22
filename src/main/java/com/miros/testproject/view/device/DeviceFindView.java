@@ -26,23 +26,27 @@ public class DeviceFindView extends BaseView {
                 utils.printLine("Enter id");
                 Integer id = Integer.parseInt(utils.readLine());
                 deviceFindController.findId(id);
+                return;
             case "2":
                 utils.printLine("Enter type");
                 String type = utils.readLine();
                 deviceFindController.findDeviceType(type);
+                return;
             case "3":
                 utils.printLine("Enter color");
                 String color = utils.readLine();
                 deviceFindController.findColor(color);
+                return;
             case "4":
                 utils.printLine("Enter model");
                 String model = utils.readLine();
                 deviceFindController.findModel(model);
+                return;
             case "5":
                 deviceFindController.showAll();
+                return;
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
         }
     }
 }

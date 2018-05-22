@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import java.util.*;
 import java.util.stream.Stream;
 
-
 /**
  * Service layer for Devices
  */

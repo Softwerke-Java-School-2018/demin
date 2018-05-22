@@ -32,7 +32,7 @@ public class UserActivityFindController extends BaseController {
                 .collect(Collectors.toList());
         userActivityList
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList);
     }
 
     /**
@@ -56,7 +56,7 @@ public class UserActivityFindController extends BaseController {
             }
             count.set(0);
         }
-        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList);
     }
 
     /**
@@ -69,7 +69,7 @@ public class UserActivityFindController extends BaseController {
         } catch (RuntimeEx e) {
             utils.printLine(e.getMessage());
         }
-        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList);
     }
 
     /**
@@ -83,6 +83,6 @@ public class UserActivityFindController extends BaseController {
                 .collect(Collectors.toList());
         userActivityList
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserActivityFindController.class, userActivityList.stream());
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList);
     }
 }

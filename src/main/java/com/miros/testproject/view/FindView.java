@@ -31,13 +31,15 @@ public class FindView extends BaseView {
         switch (num) {
             case "1":
                 userFindView.userFinder();
+                return;
             case "2":
                 deviceFindView.deviceFinder();
+                return;
             case "3":
                 userActivityFindView.userActivityFinder();
+                return;
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
         }
     }
 }

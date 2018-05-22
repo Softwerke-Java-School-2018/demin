@@ -5,7 +5,7 @@ import com.miros.testproject.controller.sort.SortClass;
 import com.miros.testproject.controller.sort.useractivity.UserActivityDateComparator;
 import com.miros.testproject.controller.sort.useractivity.UserActivityNameComparator;
 import com.miros.testproject.data.entity.UserActivity;
-
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -14,17 +14,17 @@ import java.util.stream.Stream;
 public class UserActivitySortController extends BaseController {
     private SortClass sortClass = SortClass.getInstance();
 
-    public void sortDate(Stream<UserActivity> userActivityStream) {
-        userActivityStream = userActivityStream.sorted(new UserActivityDateComparator());
-        userActivityStream
+    public void sortDate(List<UserActivity> userActivityList) {
+        userActivityList.stream()
+                .sorted(new UserActivityDateComparator())
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserActivityFindController.class, userActivityStream);
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList);
     }
 
-    public void sortUserName(Stream<UserActivity> userActivityStream) {
-        userActivityStream = userActivityStream.sorted(new UserActivityNameComparator());
-        userActivityStream
+    public void sortUserName(List<UserActivity> userActivityList) {
+        userActivityList.stream()
+                .sorted(new UserActivityNameComparator())
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserActivityFindController.class, userActivityStream);
+        sortClass.sortFunc(UserActivityFindController.class, userActivityList);
     }
 }

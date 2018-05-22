@@ -36,7 +36,7 @@ public class UserFindController extends BaseController {
                 .collect(Collectors.toList());
         userList
                 .forEach(utils::printLine);
-        sortClass.sortFunc(UserFindController.class, userList.stream());
+        sortClass.sortFunc(UserFindController.class, userList);
     }
 
     /**
@@ -50,7 +50,7 @@ public class UserFindController extends BaseController {
                 .collect(Collectors.toList());
         userList
                 .forEach(utils::printLine);
-        sortClass.sortFunc(UserFindController.class, userList.stream());
+        sortClass.sortFunc(UserFindController.class, userList);
     }
 
     public void showAll() {
@@ -59,6 +59,6 @@ public class UserFindController extends BaseController {
                 .collect(Collectors.toList());
         userList
                 .forEach(utils::printLine);
-        sortClass.sortFunc(UserFindController.class, userList.stream());
+        sortClass.sortFunc(UserFindController.class, userList);
     }
 }

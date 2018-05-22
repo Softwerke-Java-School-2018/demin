@@ -46,34 +46,14 @@ public class DeviceServiceTest {
     }
 
     @Test
-    public void save_device_null() throws NullPointerException {
-       // Optional<Device> result = deviceService.save(null);
-       // Assert.assertEquals(result.isPresent(), false);
-    }
-
-    @Test
-    public void delete_user_success() throws IndexOutOfBoundsException {
-      /*  Device device = deviceService.delete(0);
-        Device device1 = deviceService.delete(1);
-        Assert.assertEquals(Device.class, device.getClass());
-        Assert.assertEquals(Device.class, device1.getClass());
-   */
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void delete_user_throws_IndexOutOfBounds() throws IndexOutOfBoundsException {
-        deviceService.delete(100);
-    }
-
-    @Test
-    public void find_user_success() throws IndexOutOfBoundsException {
+    public void find_user_success() {
         Device user = deviceService.find(4);
         Assert.assertNotNull(user);
         Assert.assertEquals(Device.class, user.getClass());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void find_user_by_throws_IndexOutBounds() throws IndexOutOfBoundsException {
+    public void find_user_by_throws_IndexOutBounds()  {
         deviceService.find(-2);
     }
 
@@ -89,6 +69,24 @@ public class DeviceServiceTest {
         boolean exist2 = deviceService.exist(100);
         Assert.assertEquals(exist, true);
         Assert.assertEquals(exist2, false);
+    }
+
+    @Test
+    public void save_device_null() {
+        Optional<Device> result = deviceService.save(null);
+        Assert.assertEquals(result.isPresent(), false);
+    }
+
+    @Test
+    public void delete_user_success() {
+        userService.delete(0);
+        userService.delete(1);
+
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void delete_user_throws_IndexOutOfBounds() {
+        deviceService.delete(100);
     }
 
     @After

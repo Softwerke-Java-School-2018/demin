@@ -7,8 +7,7 @@ import com.miros.testproject.controller.sort.user.UserNameComparator;
 import com.miros.testproject.controller.sort.user.UserPatronymicComparator;
 import com.miros.testproject.controller.sort.user.UserSurnameComparator;
 import com.miros.testproject.data.entity.User;
-
-import java.util.stream.Stream;
+import java.util.List;
 
 /**
  * Controller for sort User elements
@@ -16,31 +15,31 @@ import java.util.stream.Stream;
 public class UserSortController extends BaseController {
     private SortClass sortClass = SortClass.getInstance();
 
-    public void sortByName(Stream<User> userStream) {
-        userStream = userStream.sorted(new UserNameComparator());
-        userStream
+    public void sortByName(List<User> userList) {
+        userList.stream()
+                .sorted(new UserNameComparator())
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserSortController.class, userStream);
+        sortClass.sortFunc(UserSortController.class, userList);
     }
 
-    public void sortBySurname(Stream<User> userStream) {
-        userStream = userStream.sorted(new UserSurnameComparator());
-        userStream
+    public void sortBySurname(List<User> userList) {
+        userList.stream()
+                .sorted(new UserSurnameComparator())
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserSortController.class, userStream);
+        sortClass.sortFunc(UserSortController.class, userList);
     }
 
-    public void sortByPatronymic(Stream<User> userStream) {
-        userStream = userStream.sorted(new UserPatronymicComparator());
-        userStream
+    public void sortByPatronymic(List<User> userList) {
+        userList.stream()
+                .sorted(new UserPatronymicComparator())
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserSortController.class, userStream);
+        sortClass.sortFunc(UserSortController.class, userList);
     }
 
-    public void sortByBirthDay(Stream<User> userStream) {
-        userStream = userStream.sorted(new UserBirthDayComparator());
-        userStream
+    public void sortByBirthDay(List<User> userList) {
+        userList.stream()
+                .sorted(new UserBirthDayComparator())
                 .forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(UserSortController.class, userStream);
+        sortClass.sortFunc(UserSortController.class, userList);
     }
 }

@@ -1,13 +1,13 @@
 package com.miros.testproject.view.device;
 
-import com.miros.testproject.Main;
+;
 import com.miros.testproject.controller.ControllersFabric;
 import com.miros.testproject.controller.device.DeviceSortController;
+import com.miros.testproject.data.entity.Device;
 import com.miros.testproject.view.BaseView;
-
 import com.miros.testproject.view.SortView;
 import lombok.Data;
-
+import java.util.List;
 import java.util.stream.Stream;
 
 
@@ -25,21 +25,23 @@ public class DeviceSortView extends BaseView implements SortView {
 
     /**
      *
-     * @param deviceStream this contains devices to sort
+     * @param deviceList this contains devices to sort
      */
-    public void sort(Stream deviceStream) {
+    public void sort(List deviceList) {
         utils.printLine(DEVICE_SORT_VIEW);
         String num = utils.readLine();
         switch (num) {
             case "1":
-                deviceSortController.sortModel(deviceStream);
+                deviceSortController.sortModel(deviceList);
+                return;
             case "2":
-                deviceSortController.sortType(deviceStream);
+                deviceSortController.sortType(deviceList);
+                return;
             case "3":
-                deviceSortController.sortColor(deviceStream);
+                deviceSortController.sortColor(deviceList);
+                return;
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+               return;
         }
     }
 }

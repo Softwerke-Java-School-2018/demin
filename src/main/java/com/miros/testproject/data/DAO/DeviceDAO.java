@@ -6,11 +6,10 @@ import java.util.*;
 
 public class DeviceDAO {
     private static DeviceDAO deviceDAO = new DeviceDAO();
-
     private List<Device> deviceList = new ArrayList();
 
-    public static DeviceDAO getInstance(){
-            return deviceDAO;
+    public static DeviceDAO getInstance() {
+        return deviceDAO;
     }
 
     public List<Device> getDeviceList() throws RuntimeException {

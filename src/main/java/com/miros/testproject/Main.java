@@ -8,11 +8,12 @@ public class Main {
     public static void main(String[] args) {
         DataCreator dataCreator = new DataCreator();
         dataCreator.dataAdd();
-        mainMenuView.baseMenu();
+        while (true){
+            mainMenuView.baseMenu();
+        }
     }
 
     public static MainMenuView getMainMenuView() {
         return mainMenuView;
     }
-
 }

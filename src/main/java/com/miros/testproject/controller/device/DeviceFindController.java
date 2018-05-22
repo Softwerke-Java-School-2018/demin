@@ -21,7 +21,7 @@ public class DeviceFindController extends BaseController {
     private DeviceService deviceService = BaseClassService.getInstance().getDeviceService();
     private SortClass sortClass = SortClass.getInstance();
     private List<Device> deviceList;
-    private final static Logger log = LoggerFactory.getLogger(DeviceFindController.class);
+    private static final Logger log = LoggerFactory.getLogger(DeviceFindController.class);
 
     public void findId(Integer id) {
         try {
@@ -52,7 +52,7 @@ public class DeviceFindController extends BaseController {
                 waitForEnter();
             }
         }
-        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
+        sortClass.sortFunc(DeviceFindController.class, deviceList);
     }
 
     public void findModel(String model) {
@@ -61,7 +61,7 @@ public class DeviceFindController extends BaseController {
                 .filter(s -> s.getModel().equalsIgnoreCase(model))
                 .collect(Collectors.toList());
         deviceList.forEach(s -> utils.printLine(s));
-        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
+        sortClass.sortFunc(DeviceFindController.class, deviceList);
     }
 
     public void findDeviceType(String type) {
@@ -75,7 +75,7 @@ public class DeviceFindController extends BaseController {
                     .collect(Collectors.toList());
             deviceList.forEach(s -> utils.printLine(s));
         }
-        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
+        sortClass.sortFunc(DeviceFindController.class, deviceList);
     }
 
     public void showAll() {
@@ -84,6 +84,6 @@ public class DeviceFindController extends BaseController {
                 .collect(Collectors.toList());
         deviceList
                 .forEach(utils::printLine);
-        sortClass.sortFunc(DeviceFindController.class, deviceList.stream());
+        sortClass.sortFunc(DeviceFindController.class, deviceList);
     }
 }

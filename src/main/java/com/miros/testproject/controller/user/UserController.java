@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 public class UserController extends BaseController {
     private UserService userService = BaseClassService.getInstance().getUserService();
-    private final static Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     private volatile User user;
 
     /**
@@ -37,9 +37,7 @@ public class UserController extends BaseController {
                     .setPatronymic(patronymic)
                     .setBirthDay(localDate)
                     .build();
-
             userService.save(user);
-            utils.printLine("User created");
             log.info("User create: Create new user with id: " + user.getId());
             waitForEnter();
             return Optional.of(user);

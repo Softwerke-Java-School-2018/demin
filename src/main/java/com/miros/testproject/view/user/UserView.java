@@ -21,13 +21,15 @@ public class UserView extends BaseView {
         switch (command) {
             case "1":
                 createReader();
+                return;
             case "2":
                 deleteReader();
+                return;
             case "3":
                 updateReader();
+                return;
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
         }
     }
     private void createReader() {

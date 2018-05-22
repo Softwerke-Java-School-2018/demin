@@ -37,8 +37,7 @@ public class UserFindView extends BaseView {
             case "4":
                 userFindController.showAll();
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
         }
     }
 }

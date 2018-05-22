@@ -11,7 +11,7 @@ public abstract class BaseClass {
     protected static final Utils utils = new Utils();
     protected static LocalDate localDate;
     protected void waitForEnter(){
-        utils.waitForEnter();
+        return;
     }
 }
 

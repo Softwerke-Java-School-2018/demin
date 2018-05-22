@@ -7,6 +7,7 @@ import com.miros.testproject.data.enums.DeviceType;
 import com.miros.testproject.exception.RuntimeEx;
 import com.miros.testproject.service.BaseClassService;
 import com.miros.testproject.service.DeviceService;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,9 +16,11 @@ import java.util.Optional;
 /**
  * Controller for Create, Delete, Update Device Entity
  */
+
+@Data
 public class DeviceController extends BaseController {
     private DeviceService deviceService = BaseClassService.getInstance().getDeviceService();
-    private final static Logger log = LoggerFactory.getLogger(DeviceController.class);
+    private static final Logger log = LoggerFactory.getLogger(DeviceController.class);
     private volatile Device device;
 
     public Optional<Device> create(String type, String color, String devModel) {
@@ -41,8 +44,6 @@ public class DeviceController extends BaseController {
                     .build();
             deviceService.save(device);
             log.info("Device create: Device created" + device.getId());
-            utils.printLine("Device created");
-            waitForEnter();
             return Optional.of(device);
         } catch (RuntimeEx e) {
             log.info("Device create: Runtime err", e);
@@ -59,12 +60,10 @@ public class DeviceController extends BaseController {
             device = deviceService.delete(id);
             utils.printLine("Device deleted");
             log.info("Device delete: device deleted id: " + id);
-            waitForEnter();
             return Optional.of(device);
         } catch (RuntimeEx e) {
-            log.info("Device delete: not existing Id");
+            log.debug("Device delete: not existing Id");
             utils.printLine("Device with " + id + " id number, doesn't exist");
-            waitForEnter();
         }
         return empty;
     }

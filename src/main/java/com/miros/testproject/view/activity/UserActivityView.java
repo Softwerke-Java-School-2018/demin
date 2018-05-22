@@ -26,8 +26,7 @@ public class UserActivityView extends BaseView {
             case "2":
                 deleteUserActivityView();
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+               return;
         }
     }
 

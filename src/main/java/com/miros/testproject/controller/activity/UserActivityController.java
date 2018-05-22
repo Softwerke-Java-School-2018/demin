@@ -26,7 +26,7 @@ public class UserActivityController extends BaseController {
     private UserService userService = BaseClassService.getInstance().getUserService();
     private DeviceService deviceService = BaseClassService.getInstance().getDeviceService();
     private UserActivityService userActivityService = BaseClassService.getInstance().getUserActivityService();
-    private final static Logger log = LoggerFactory.getLogger(UserActivityController.class);
+    private static final Logger log = LoggerFactory.getLogger(UserActivityController.class);
     private volatile UserActivity userActivity;
 
     //Stream?

@@ -35,17 +35,20 @@ public class MainMenuView extends BaseView {
         switch (command) {
             case "1":
                 userView.userMenu();
+                return;
             case "2":
                 deviceView.deviceMenu();
+                return;
             case "3":
                 userActivityView.userActivityMenu();
+                return;
             case "4":
                 findView.findMenu();
+                return;
             case "":
                 System.exit(0);
             default:
-                utils.printLine("It's Wrong");
-                waitForEnter();
+                return;
         }
     }
 }
